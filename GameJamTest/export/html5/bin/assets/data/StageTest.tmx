@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.9" tiledversion="1.9.2" orientation="orthogonal" renderorder="right-down" width="13" height="10" tilewidth="50" tileheight="50" infinite="0" nextlayerid="4" nextobjectid="185">
+ <tileset firstgid="1" source="levelAssets.tsx"/>
+ <objectgroup id="2" name="Platforms">
+  <object id="121" gid="1" x="0" y="50" width="50" height="50"/>
+  <object id="122" gid="1" x="0" y="0" width="50" height="50"/>
+  <object id="123" gid="1" x="50" y="0" width="50" height="50"/>
+  <object id="124" gid="1" x="550" y="0" width="50" height="50"/>
+  <object id="125" gid="1" x="600" y="0" width="50" height="50"/>
+  <object id="126" gid="1" x="600" y="50" width="50" height="50"/>
+  <object id="146" gid="1" x="150" y="150" width="50" height="50"/>
+  <object id="147" gid="1" x="150" y="100" width="50" height="50"/>
+  <object id="148" gid="1" x="200" y="100" width="50" height="50"/>
+  <object id="149" gid="1" x="250" y="100" width="50" height="50"/>
+  <object id="150" gid="1" x="300" y="100" width="50" height="50"/>
+  <object id="151" gid="1" x="350" y="100" width="50" height="50"/>
+  <object id="152" gid="1" x="400" y="100" width="50" height="50"/>
+  <object id="153" gid="1" x="450" y="100" width="50" height="50"/>
+  <object id="154" gid="1" x="450" y="150" width="50" height="50"/>
+  <object id="155" gid="1" x="0" y="200" width="50" height="50"/>
+  <object id="156" gid="1" x="600" y="200" width="50" height="50"/>
+  <object id="158" gid="1" x="400" y="450" width="50" height="50"/>
+  <object id="159" gid="1" x="350" y="450" width="50" height="50"/>
+  <object id="160" gid="1" x="300" y="450" width="50" height="50"/>
+  <object id="161" gid="1" x="250" y="450" width="50" height="50"/>
+  <object id="162" gid="1" x="200" y="450" width="50" height="50"/>
+  <object id="163" gid="1" x="200" y="450" width="50" height="50"/>
+  <object id="164" gid="1" x="0" y="450" width="50" height="50"/>
+  <object id="165" gid="1" x="0" y="400" width="50" height="50"/>
+  <object id="166" gid="1" x="50" y="450" width="50" height="50"/>
+  <object id="167" gid="1" x="550" y="450" width="50" height="50"/>
+  <object id="168" gid="1" x="600" y="450" width="50" height="50"/>
+  <object id="169" gid="1" x="600" y="400" width="50" height="50"/>
+  <object id="173" gid="1" x="100" y="300" width="50" height="50"/>
+  <object id="174" gid="1" x="150" y="300" width="50" height="50"/>
+  <object id="175" gid="1" x="200" y="300" width="50" height="50"/>
+  <object id="180" gid="1" x="400" y="300" width="50" height="50"/>
+  <object id="181" gid="1" x="450" y="300" width="50" height="50"/>
+  <object id="184" gid="1" x="500" y="300" width="50" height="50"/>
+ </objectgroup>
+ <objectgroup id="3" name="helpers"/>
+</map>
