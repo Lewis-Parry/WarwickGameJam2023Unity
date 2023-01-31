@@ -1,17 +1,25 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerMovement : MonoBehaviour
 {
-    private float horizontal; //horizontal input
+    public float horizontal; //horizontal input
+    private float vertical; //vertical input
     private float speed = 8f; //f means force using Unity's gravity system
     private float jumpingPower = 20f;
+    private float fallingStrength = -1f;
     private bool isFacingRight = true;
+
+
+
 
     [SerializeField] private Rigidbody2D rb; //rb for rigid body 2d reference to component
     [SerializeField] private Transform groundCheck;
     [SerializeField] private LayerMask groundLayer;
+    [SerializeField] private AudioSource downSoundEffect;
+    
 
     public Transform Player; //referencing Player Inspector values
     // Start is called before the first frame update
@@ -24,10 +32,15 @@ public class PlayerMovement : MonoBehaviour
     void Update()
     {
 
+         if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            SceneManager.LoadScene("MainMenu");
+        }
 
         rotateBack();
 
         horizontal = Input.GetAxisRaw("Horizontal"); //returns -1, 0 or 1 depending on direction moving (button dependent)
+        vertical = Input.GetAxisRaw("Vertical");
 
         if (Input.GetButtonDown("Jump") && IsGrounded())//when jump button pressed and on ground (GO TO EDIT -> PROJECT SETTINGS -> INPUT MANAGER TO SEE WHAT VALUES ARE WHAT)
         {
@@ -39,8 +52,16 @@ public class PlayerMovement : MonoBehaviour
             rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y * 0.5f);
         }
 
+        Debug.Log(vertical );
+            
+        if (vertical==-1)
+        {
+            rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y +  fallingStrength);
+            downSoundEffect.Play();
+        }
 
-        Squeeze();
+
+            Squeeze();
         Flip();
 
 
@@ -62,7 +83,7 @@ public class PlayerMovement : MonoBehaviour
     private void rotateBack() //rotates the player back to upright position
     {
 
-        if (Player.eulerAngles.z <= 180f)  //finding the Player's current rotation
+        if (Player.eulerAngles.z <= 180f)  //finding the Player's current rotationa
         { Rotation = Player.eulerAngles.z; }
         else { Rotation = Player.eulerAngles.z - 360f; }
 
