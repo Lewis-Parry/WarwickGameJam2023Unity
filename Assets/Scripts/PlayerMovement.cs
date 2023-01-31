@@ -102,13 +102,19 @@ public class PlayerMovement : MonoBehaviour
 
     }
 
+  
     private void Squeeze()
     {
+        float squeezeSoften = 0.3f; //softening constant to affect HOW MUCH the player squeezes
+        float leeWay = 0.1f; //leeway for Squeeze method, value of y can change a certain amount past its limit and the localScale will still change 
+
+
         Vector3 localScale = transform.localScale;
         if (horizontal != 0) //only changes when moving
         {
-            localScale.x = (-horizontal * 0.4f) / (1 - 0.28f * Mathf.Abs(rb.velocity.x)); //0.4f is dependent on the player's x scale value, if you change that, change this accordingly
-            //scale.x = 1 - 1 / (SPEED - Math.abs(velocity.x)) / SPEED;
+            //localScale.x = (-horizontal * 0.4f) / (1 - 0.30f * Mathf.Abs(rb.velocity.x)); //0.4f is dependent on the player's x scale value, if you change that, change this accordingly
+            localScale.x = (horizontal * 0.4f) / ((speed + Mathf.Abs(rb.velocity.x)*squeezeSoften) / speed);
+            //scale.x = 1 - 1 / (SPEED - Math.abs(velocity.x)*softeningConstant) / SPEED;
         }
         else
         {
@@ -119,7 +125,8 @@ public class PlayerMovement : MonoBehaviour
         }
 
         localScale.y = 0.4f / (1 + 0.05f * rb.velocity.y);
-        if (Mathf.Abs(localScale.y) <= 0.4f && Mathf.Abs(localScale.x) <= 0.4f) { //can only can be as wide as the initial width and height
+        if (Mathf.Abs(localScale.y) <= 0.4f+leeWay && Mathf.Abs(localScale.x) <= 0.4f+leeWay) { //can only can be as wide as the initial width and height
+            Debug.Log(localScale.x);
             transform.localScale = localScale;
         }
 
