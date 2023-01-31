@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -31,6 +32,10 @@ public class PlayerMovement : MonoBehaviour
     void Update()
     {
 
+         if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            SceneManager.LoadScene("MainMenu");
+        }
 
         rotateBack();
 
@@ -78,7 +83,7 @@ public class PlayerMovement : MonoBehaviour
     private void rotateBack() //rotates the player back to upright position
     {
 
-        if (Player.eulerAngles.z <= 180f)  //finding the Player's current rotation
+        if (Player.eulerAngles.z <= 180f)  //finding the Player's current rotationa
         { Rotation = Player.eulerAngles.z; }
         else { Rotation = Player.eulerAngles.z - 360f; }
 
