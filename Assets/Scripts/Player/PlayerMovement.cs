@@ -62,7 +62,7 @@ public class PlayerMovement : MonoBehaviour
     private void rotateBack() //rotates the player back to upright position
     {
 
-        if (Player.eulerAngles.z <= 180f)  //finding the Player's current rotation
+        if (Player.eulerAngles.z <= 180f)  //finding the Player's current rotationa
         { Rotation = Player.eulerAngles.z; }
         else { Rotation = Player.eulerAngles.z - 360f; }
 
