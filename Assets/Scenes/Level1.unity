@@ -5497,7 +5497,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d4d7021fede34e042836b5c58fd5feda, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 8
+  speed: 20
+  targetSpeed: 8
+  accelRate: 1
   jumpingPower: 20
   charScale: 0.33
   rb: {fileID: 153045386}
