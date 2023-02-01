@@ -36,17 +36,17 @@ public class Player2Movement : MonoBehaviour
 
         rotateBack();
 
-        horizontal = Input.GetAxisRaw("Horizontal"); //returns -1, 0 or 1 depending on direction moving (button dependent)
-        vertical = Input.GetAxisRaw("Vertical");
+        horizontal = Input.GetAxisRaw("Horizontal2"); //returns -1, 0 or 1 depending on direction moving (button dependent)
+        vertical = Input.GetAxisRaw("Vertical2");
 
         Debug.Log(IsGrounded());
 
-        if (Input.GetButtonDown("Jump") && IsGrounded())//when jump button pressed and on ground (GO TO EDIT -> PROJECT SETTINGS -> INPUT MANAGER TO SEE WHAT VALUES ARE WHAT)
+        if (Input.GetButtonDown("Jump2") && IsGrounded())//when jump button pressed and on ground (GO TO EDIT -> PROJECT SETTINGS -> INPUT MANAGER TO SEE WHAT VALUES ARE WHAT)
         {
             rb.velocity = new Vector2(rb.velocity.x, jumpingPower); //y velocity changes
         }
 
-        if (Input.GetButtonUp("Jump") && rb.velocity.y > 0f)
+        if (Input.GetButtonUp("Jump2") && rb.velocity.y > 0f)
         {//release up button whilst still in air, jump higher vs jump lower
             rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y * 0.5f);
         }

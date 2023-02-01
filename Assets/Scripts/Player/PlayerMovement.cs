@@ -4,17 +4,14 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-    public float horizontal; //horizontal input
+    private float horizontal; //horizontal input
     private float vertical; //vertical input
-    private float speed = 8f; //f means force using Unity's gravity system
-    private float jumpingPower = 20f;
+    [SerializeField] private float speed = 8f; //affects horizontal movement
+    [SerializeField] private float jumpingPower = 20f; //how much force is behind a jump
     private float fallingStrength = -1f;
     private bool isFacingRight = true;
 
     public float charScale = 0.3f;// reference this to the scale being used in the transform section for the character (default)
-
-
-
 
 
     [SerializeField] private Rigidbody2D rb; //rb for rigid body 2d reference to component
@@ -51,8 +48,8 @@ public class PlayerMovement : MonoBehaviour
             rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y * 0.5f);
         }
 
-    
-            
+
+        Debug.Log(vertical);
         if (vertical==-1)
         {
             rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y +  fallingStrength);
