@@ -3,15 +3,26 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
+
 {
+    public float charScale = 0.33f;// reference this to the scale being used in the transform section for the character (default)
+
     private float horizontal; //horizontal input
     private float vertical; //vertical input
-    [SerializeField] private float speed = 8f; //affects horizontal movement
-    [SerializeField] private float jumpingPower = 20f; //how much force is behind a jump
+
+    [SerializeField] private float speed = 20f; //affects horizontal movement
+    [SerializeField] private float fixTargetSpeed = 7f;
+    [SerializeField] private float fixAccelRate = 6f; //rate of acceleration
+    [SerializeField] private float airborneDampening = 0.8f; //rate of acceleration dampening airborne
+
+    [SerializeField] private float apexJumpModifier = 1.6f; //changes how much acceleration and max speed changes whilst at apex of jump
+    [SerializeField] private float apexJumpThreshold = 7f;//changes threshold for what counts as jump apex
+
+
+    [SerializeField] private float jumpingPower = 15f; //how much force is behind a jump
+
     private float fallingStrength = -1f;
     private bool isFacingRight = true;
-
-    public float charScale = 0.3f;// reference this to the scale being used in the transform section for the character (default)
 
 
     [SerializeField] private Rigidbody2D rb; //rb for rigid body 2d reference to component
@@ -57,14 +68,62 @@ public class PlayerMovement : MonoBehaviour
         }
 
 
-            Squeeze();
+        Squeeze();
         Flip();
 
 
     }
     private void FixedUpdate() //used for physics calculations (same frequency as physics system)
     {
-        rb.velocity = new Vector2(horizontal * speed, rb.velocity.y);
+        //HORIZONTAL VELOCITY, utilises acceleration, more eased and less robotic movement. 
+
+        float accelRate = fixAccelRate;
+        float targetSpeed = fixTargetSpeed;
+
+        //APEX OF JUMP CHANGES MIGHT MAKE INTO A FUNCTION
+        if (!IsGrounded() && Mathf.Abs(rb.velocity.y) < apexJumpThreshold)
+        {
+            accelRate = accelRate * apexJumpModifier;  //changes acceleration at apex of jump
+            targetSpeed = targetSpeed * apexJumpModifier;
+        }
+
+        //DAMPENING OF ACCELERATION WHEN AIRBORNE
+        if (!IsGrounded()) 
+        {
+            accelRate = accelRate * airborneDampening; //if the character is airbone, decrease acceleration
+        }
+        else
+        {
+            accelRate = fixAccelRate; //original accelRate
+        }
+
+
+        float speedDif = (targetSpeed * horizontal - rb.velocity.x); //speedDif increases as rb.velocity.x decreases
+        float movement = speedDif * accelRate; //the slower the current velocity, the greater the movement
+           
+        //rb.velocity = new Vector2(horizontal * speed, rb.velocity.y);
+        rb.AddForce(movement * Vector2.right);
+
+
+
+        //VERTICAL VELOCITY
+
+        if (!IsGrounded())
+        {
+            //CLAMPING VERTICAL VELOCITY WHEN GOING DOWN I.E. FORCES A MAX VERTICAL VELOCITY DOWNWARDS
+            if (rb.velocity.y <= -12f) //may make global variables out of drag value and y threshol
+            { rb.drag = 20f; } //uses drag, higher value means object slows down more
+            else
+            { rb.drag = 0f; }
+
+            //HANG TIME, INCREASE UPWARDS FORCE
+            if (Mathf.Abs(rb.velocity.y) <= 2f)
+            {
+                rb.AddForce(5f * Vector2.up);
+            }
+        }
+
+
     }
 
     private bool IsGrounded() //for ground detection
@@ -122,7 +181,7 @@ public class PlayerMovement : MonoBehaviour
   
     private void Squeeze()
     {
-        float squeezeSoften = 0.3f; //softening constant to affect HOW MUCH the player squeezes
+        float squeezeSoften = 0.7f; //softening constant to affect HOW MUCH the player squeezes
         float leeWay = 0.1f; //leeway for Squeeze method, value of y can change a certain amount past its limit and the localScale will still change 
 
 
