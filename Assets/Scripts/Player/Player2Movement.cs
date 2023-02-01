@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerMovement : MonoBehaviour
+public class Player2Movement : MonoBehaviour
 {
     public float horizontal; //horizontal input
     private float vertical; //vertical input
@@ -21,7 +21,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private Transform groundCheck;
     [SerializeField] private LayerMask groundLayer;
     [SerializeField] private AudioSource downSoundEffect;
-    
+
 
     public Transform Player; //referencing Player Inspector values
     // Start is called before the first frame update
@@ -51,16 +51,16 @@ public class PlayerMovement : MonoBehaviour
             rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y * 0.5f);
         }
 
-    
-            
-        if (vertical==-1)
+
+
+        if (vertical == -1)
         {
-            rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y +  fallingStrength);
+            rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y + fallingStrength);
             downSoundEffect.Play();
         }
 
 
-            Squeeze();
+        Squeeze();
         Flip();
 
 
@@ -122,7 +122,7 @@ public class PlayerMovement : MonoBehaviour
 
     }
 
-  
+
     private void Squeeze()
     {
         float squeezeSoften = 0.3f; //softening constant to affect HOW MUCH the player squeezes
@@ -133,19 +133,20 @@ public class PlayerMovement : MonoBehaviour
         if (horizontal != 0) //only changes when moving
         {
             //0.4f is dependent on the player's x scale value, if you change that, change this accordingly
-            localScale.x = (horizontal * charScale) / ((speed + Mathf.Abs(rb.velocity.x)*squeezeSoften) / speed);
+            localScale.x = (horizontal * charScale) / ((speed + Mathf.Abs(rb.velocity.x) * squeezeSoften) / speed);
             //scale.x = 1 - 1 / (SPEED - Math.abs(velocity.x)*softeningConstant) / SPEED;
         }
         else
         {
             if (isFacingRight)
-            {localScale.x = charScale;}
+            { localScale.x = charScale; }
             else
-            {localScale.x = -charScale;}
+            { localScale.x = -charScale; }
         }
 
         localScale.y = charScale / (1 + 0.05f * rb.velocity.y);
-        if (Mathf.Abs(localScale.y) <= charScale+leeWay && Mathf.Abs(localScale.x) <= charScale+leeWay) { //can only can be as wide as the initial width and height
+        if (Mathf.Abs(localScale.y) <= charScale + leeWay && Mathf.Abs(localScale.x) <= charScale + leeWay)
+        { //can only can be as wide as the initial width and height
             transform.localScale = localScale;
         }
 
