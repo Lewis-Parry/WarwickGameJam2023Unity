@@ -5498,11 +5498,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d4d7021fede34e042836b5c58fd5feda, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 20
-  targetSpeed: 8
-  accelRate: 1
-  jumpingPower: 20
   charScale: 0.33
+  speed: 20
+  fixTargetSpeed: 7
+  fixAccelRate: 6
+  airborneDampening: 0.8
+  apexJumpModifier: 1.6
+  apexJumpThreshold: 7
+  jumpingPower: 15
   rb: {fileID: 153045386}
   groundCheck: {fileID: 469059116}
   groundLayer:
