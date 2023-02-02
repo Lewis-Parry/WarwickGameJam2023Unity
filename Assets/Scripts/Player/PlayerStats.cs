@@ -9,4 +9,5 @@ public class PlayerStats : MonoBehaviour
     public bool isAlive = true;
     public int numberLives;
     public float jumpingPower = 15f;
+
 }
