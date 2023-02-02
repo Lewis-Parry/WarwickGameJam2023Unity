@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlayerStats : MonoBehaviour
 {
-    public float speed;
+    public float speed = 7f;
     public float health;
-    public float jumpingPower;
+    public float jumpingPower = 15f;
 }
