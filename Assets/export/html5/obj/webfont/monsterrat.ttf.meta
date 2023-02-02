@@ -1,0 +1,22 @@
+fileFormatVersion: 2
+guid: 0d4283925ee351141a933b7b889f64b6
+TrueTypeFontImporter:
+  externalObjects: {}
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontNames:
+  - Monsterrat
+  fallbackFontReferences:
+  - {fileID: 12800000, guid: 6bf2106d2b3feb546b84d97bb8450230, type: 3}
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  useLegacyBoundsCalculation: 0
+  shouldRoundAdvanceValue: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
