@@ -12,7 +12,6 @@ public class PlayerMovement : MonoBehaviour
 
     [SerializeField] private PlayerStats playerStats;
     private float speed = 20f; //affects horizontal movement
-    private float fixTargetSpeed = 2f;
     [SerializeField] private float fixAccelRate = 6f; //rate of acceleration
     [SerializeField] private float airborneDampening = 0.8f; //rate of acceleration dampening airborne
 
@@ -44,7 +43,6 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        fixTargetSpeed = playerStats.speed;
         jumpingPower = playerStats.jumpingPower;
 
         rotateBack();
