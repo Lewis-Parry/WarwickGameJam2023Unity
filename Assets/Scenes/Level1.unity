@@ -9108,7 +9108,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   powerupCollider: {fileID: 1321065584}
-  boostSpeed: 50
+  boostSpeed: 14
 --- !u!58 &1321065584
 CircleCollider2D:
   m_ObjectHideFlags: 0
