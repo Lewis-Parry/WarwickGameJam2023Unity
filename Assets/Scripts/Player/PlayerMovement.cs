@@ -10,8 +10,9 @@ public class PlayerMovement : MonoBehaviour
     private float horizontal; //horizontal input
     private float vertical; //vertical input
 
+    [SerializeField] private PlayerStats playerStats;
     [SerializeField] private float speed = 20f; //affects horizontal movement
-    [SerializeField] private float fixTargetSpeed = 7f;
+    private float fixTargetSpeed = 2f;
     [SerializeField] private float fixAccelRate = 6f; //rate of acceleration
     [SerializeField] private float airborneDampening = 0.8f; //rate of acceleration dampening airborne
 
@@ -29,7 +30,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private Transform groundCheck;
     [SerializeField] private LayerMask groundLayer;
     [SerializeField] private AudioSource downSoundEffect;
-    [SerializeField] private PlayerStats playerStats;
+    
     
 
     public Transform Player; //referencing Player Inspector values
@@ -37,11 +38,13 @@ public class PlayerMovement : MonoBehaviour
 
     void Start()
     {
+        
     }
 
     // Update is called once per frame
     void Update()
     {
+        fixTargetSpeed = playerStats.speed;
 
         rotateBack();
 
@@ -79,7 +82,7 @@ public class PlayerMovement : MonoBehaviour
         //HORIZONTAL VELOCITY, utilises acceleration, more eased and less robotic movement. 
 
         float accelRate = fixAccelRate;
-        float targetSpeed = fixTargetSpeed;
+        float targetSpeed = playerStats.speed;
 
         //APEX OF JUMP CHANGES MIGHT MAKE INTO A FUNCTION
         if (!IsGrounded() && Mathf.Abs(rb.velocity.y) < apexJumpThreshold)
