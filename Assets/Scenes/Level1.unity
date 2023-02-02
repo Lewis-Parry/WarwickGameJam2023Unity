@@ -5550,10 +5550,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   charScale: 0.33
   playerStats: {fileID: 153045390}
+  speed: 20
   fixAccelRate: 6
   airborneDampening: 0.8
   apexJumpModifier: 1.6
   apexJumpThreshold: 7
+  jumpingPower: 15
   rb: {fileID: 153045386}
   groundCheck: {fileID: 469059116}
   groundLayer:
@@ -5704,7 +5706,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 7
   health: 100
-  jumpingPower: 15
 --- !u!1 &264678876
 GameObject:
   m_ObjectHideFlags: 0
@@ -8662,7 +8663,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 7
   health: 100
-  jumpingPower: 0
 --- !u!1 &915682452
 GameObject:
   m_ObjectHideFlags: 0

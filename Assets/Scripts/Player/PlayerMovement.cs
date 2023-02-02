@@ -12,6 +12,7 @@ public class PlayerMovement : MonoBehaviour
 
     [SerializeField] private PlayerStats playerStats;
     private float speed = 20f; //affects horizontal movement
+    private float fixTargetSpeed = 2f;
     [SerializeField] private float fixAccelRate = 6f; //rate of acceleration
     [SerializeField] private float airborneDampening = 0.8f; //rate of acceleration dampening airborne
 
@@ -43,14 +44,13 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        fixTargetSpeed = playerStats.speed;
         jumpingPower = playerStats.jumpingPower;
 
         rotateBack();
 
         horizontal = Input.GetAxisRaw("Horizontal"); //returns -1, 0 or 1 depending on direction moving (button dependent)
         vertical = Input.GetAxisRaw("Vertical");
-
-        Debug.Log(IsGrounded());
 
         if (Input.GetButtonDown("Jump") && IsGrounded())//when jump button pressed and on ground (GO TO EDIT -> PROJECT SETTINGS -> INPUT MANAGER TO SEE WHAT VALUES ARE WHAT)
         {
@@ -62,8 +62,6 @@ public class PlayerMovement : MonoBehaviour
             rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y * 0.5f);
         }
 
-
-        Debug.Log(vertical);
         if (vertical==-1)
         {
             rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y +  fallingStrength);
