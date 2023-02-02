@@ -5,4 +5,5 @@ using UnityEngine;
 public class PlayerStats : MonoBehaviour
 {
     public float speed;
+    public float health;
 }
