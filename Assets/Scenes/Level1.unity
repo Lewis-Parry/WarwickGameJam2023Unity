@@ -5305,9 +5305,8 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2059665062}
-  - {fileID: 2085618542}
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &153045381
 GameObject:
@@ -5551,10 +5550,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   charScale: 0.33
   playerStats: {fileID: 153045390}
+  speed: 20
   fixAccelRate: 6
   airborneDampening: 0.8
   apexJumpModifier: 1.6
   apexJumpThreshold: 7
+  jumpingPower: 15
   rb: {fileID: 153045386}
   groundCheck: {fileID: 469059116}
   groundLayer:
@@ -5705,7 +5706,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 7
   health: 100
-  jumpingPower: 10
 --- !u!1 &264678876
 GameObject:
   m_ObjectHideFlags: 0
@@ -8663,7 +8663,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 7
   health: 100
-  jumpingPower: 0
 --- !u!1 &915682452
 GameObject:
   m_ObjectHideFlags: 0
@@ -9094,7 +9093,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1321065583
 MonoBehaviour:
@@ -10432,8 +10431,8 @@ RectTransform:
   - {fileID: 787878230}
   - {fileID: 1252206074}
   - {fileID: 791597501}
-  m_Father: {fileID: 41324208}
-  m_RootOrder: 1
+  m_Father: {fileID: 0}
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
