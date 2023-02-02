@@ -4,18 +4,15 @@ using UnityEngine;
 
 public class Player2Movement : MonoBehaviour
 {
+
+    public PlayerStats playerStats; 
     public float horizontal; //horizontal input
     private float vertical; //vertical input
-    private float speed = 8f; //f means force using Unity's gravity system
     private float jumpingPower = 20f;
     private float fallingStrength = -1f;
     private bool isFacingRight = true;
 
     public float charScale = 0.3f;// reference this to the scale being used in the transform section for the character (default)
-
-
-
-
 
     [SerializeField] private Rigidbody2D rb; //rb for rigid body 2d reference to component
     [SerializeField] private Transform groundCheck;
@@ -67,7 +64,7 @@ public class Player2Movement : MonoBehaviour
     }
     private void FixedUpdate() //used for physics calculations (same frequency as physics system)
     {
-        rb.velocity = new Vector2(horizontal * speed, rb.velocity.y);
+        rb.velocity = new Vector2(horizontal * playerStats.speed, rb.velocity.y);
     }
 
     private bool IsGrounded() //for ground detection
@@ -133,7 +130,7 @@ public class Player2Movement : MonoBehaviour
         if (horizontal != 0) //only changes when moving
         {
             //0.4f is dependent on the player's x scale value, if you change that, change this accordingly
-            localScale.x = (horizontal * charScale) / ((speed + Mathf.Abs(rb.velocity.x) * squeezeSoften) / speed);
+            localScale.x = (horizontal * charScale) / ((playerStats.speed + Mathf.Abs(rb.velocity.x) * squeezeSoften) / playerStats.speed);
             //scale.x = 1 - 1 / (SPEED - Math.abs(velocity.x)*softeningConstant) / SPEED;
         }
         else

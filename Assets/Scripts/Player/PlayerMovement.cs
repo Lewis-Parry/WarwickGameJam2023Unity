@@ -29,6 +29,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private Transform groundCheck;
     [SerializeField] private LayerMask groundLayer;
     [SerializeField] private AudioSource downSoundEffect;
+    [SerializeField] private PlayerStats playerStats;
     
 
     public Transform Player; //referencing Player Inspector values
