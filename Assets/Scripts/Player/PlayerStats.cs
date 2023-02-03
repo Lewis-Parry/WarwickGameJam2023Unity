@@ -11,5 +11,5 @@ public class PlayerStats : MonoBehaviour
     public int numberLives;
     public float jumpingPower = 15f;
 
-
+}
 
