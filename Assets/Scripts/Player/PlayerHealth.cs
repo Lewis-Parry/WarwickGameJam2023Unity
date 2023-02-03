@@ -31,7 +31,7 @@ public class PlayerHealth : MonoBehaviour
         }
     }
 
-    void TakeDamage(float damage)
+    public void TakeDamage(float damage)
     {
         playerStats.health -= damage;
         healthBar.SetHealth(playerStats.health);
