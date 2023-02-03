@@ -20,8 +20,6 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float apexJumpThreshold = 7f;//changes threshold for what counts as jump apex
 
 
-    private float jumpingPower = 15f; //how much force is behind a jump
-
     private float fallingStrength = -1f;
     private bool isFacingRight = true;
 
@@ -45,7 +43,7 @@ public class PlayerMovement : MonoBehaviour
     void Update()
     {
         fixTargetSpeed = playerStats.speed;
-        jumpingPower = playerStats.jumpingPower;
+        float jumpingPower = playerStats.jumpingPower;
 
         rotateBack();
 
