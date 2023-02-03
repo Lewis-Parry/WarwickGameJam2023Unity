@@ -21,6 +21,14 @@ public class PlayerHealth : MonoBehaviour
         {
             TakeDamage(10);
         }
+
+        if(playerStats.health <= 0) {
+            playerStats.numberLives =- 1;
+        }
+
+        if(playerStats.numberLives <= 0){
+            playerStats.isAlive = false;
+        }
     }
 
     void TakeDamage(float damage)
