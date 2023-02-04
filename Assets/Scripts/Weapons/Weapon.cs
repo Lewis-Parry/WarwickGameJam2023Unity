@@ -5,8 +5,8 @@ using UnityEngine;
 public class Weapon : MonoBehaviour
 {
     
-    private Vector3 rest = new Vector3(0, 0, 0);
-    private Vector3 swung = new Vector3(0, 0, 90);
+   // private Vector3 rest = new Vector3(0, 0, 0);
+    //private Vector3 swung = new Vector3(0, 0, 90);
     private bool isSwinging = false;
 
 
@@ -14,7 +14,7 @@ public class Weapon : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-       gameObject.GetComponent<SpriteRenderer>().enabled = false;
+      gameObject.GetComponent<SpriteRenderer>().enabled = false;
     }
 
     // Update is called once per frame
@@ -22,33 +22,33 @@ public class Weapon : MonoBehaviour
     {
          if (Input.GetButtonUp("Jump") || isSwinging)
         {
-            isSwinging = true;
+           isSwinging = true;
             Swing();
         }
     }
 
     void Swing() {
-
-       gameObject.GetComponent<SpriteRenderer>().enabled = true;
+        
+        gameObject.GetComponent<SpriteRenderer>().enabled = true;
         Quaternion currentRotation = transform.rotation;
         Quaternion wantedRotation = Quaternion.Euler(0,0,90);
 
-        if(transform.rotation.z == 90){
+        if(transform.rotation == wantedRotation){
 
             isSwinging = false;
             gameObject.GetComponent<SpriteRenderer>().enabled = false;
-            transform.Rotate(new Vector3(0, 0, 0));
+            transform.Rotate(new Vector3(0, 0, 90));
             return;
 
         }
 
         if(isSwinging) {
 
-            transform.rotation = Quaternion.RotateTowards(currentRotation, wantedRotation, Time.deltaTime*750f);    
+            transform.rotation = Quaternion.RotateTowards(currentRotation, wantedRotation, Time.deltaTime*250f);    
 
         }
         
-        Debug.Log("true");
         //gameObject.GetComponent<SpriteRenderer>().enabled = false;
+        
     }
 }
