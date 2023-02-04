@@ -3,33 +3,65 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Player2Movement : MonoBehaviour
-{
 
-    public PlayerStats playerStats; 
-    public float horizontal; //horizontal input
+{
+    public float charScale = 0.33f;// reference this to the scale being used in the transform section for the character (default)
+
+    private float horizontal; //horizontal input
     private float vertical; //vertical input
-    private float jumpingPower = 20f;
+
+    [SerializeField] private PlayerStats playerStats;
+    private float speed = 20f; //affects horizontal movement
+    private float fixTargetSpeed = 2f;
+    [SerializeField] private float fixAccelRate = 6f; //rate of acceleration
+    [SerializeField] private float airborneDampening = 0.8f; //rate of acceleration dampening airborne
+
+    [SerializeField] private float apexJumpModifier = 1.6f; //changes how much acceleration and max speed changes whilst at apex of jump
+    [SerializeField] private float apexJumpThreshold = 7f;//changes threshold for what counts as jump apex
+
+
     private float fallingStrength = -1f;
     private bool isFacingRight = true;
 
-    public float charScale = 0.3f;// reference this to the scale being used in the transform section for the character (default)
+
+    //DASHING GLOBAL VARIABLES
+    private bool canDash = true;
+    private bool isDashing;
+    [SerializeField] private float dashingPower = 100f;
+    [SerializeField] private float dashingTime = 0.2f;
+
 
     [SerializeField] private Rigidbody2D rb; //rb for rigid body 2d reference to component
     [SerializeField] private Transform groundCheck;
     [SerializeField] private LayerMask groundLayer;
     [SerializeField] private AudioSource downSoundEffect;
 
+    [SerializeField] private TrailRenderer tr;
+    
 
     public Transform Player; //referencing Player Inspector values
     // Start is called before the first frame update
 
     void Start()
     {
+        
     }
 
     // Update is called once per frame
     void Update()
     {
+
+        if (isDashing) //prevents additional movement options
+        {return;}
+
+         if (IsGrounded()) //doubleJumps
+        {
+            playerStats.currentJumps = playerStats.numberJumps;
+        }
+
+
+        fixTargetSpeed = playerStats.speed;
+        float jumpingPower = playerStats.jumpingPower;
 
         rotateBack();
 
@@ -38,9 +70,11 @@ public class Player2Movement : MonoBehaviour
 
         Debug.Log(IsGrounded());
 
-        if (Input.GetButtonDown("Jump2") && IsGrounded())//when jump button pressed and on ground (GO TO EDIT -> PROJECT SETTINGS -> INPUT MANAGER TO SEE WHAT VALUES ARE WHAT)
+
+        if (Input.GetButtonDown("Jump2") && playerStats.currentJumps > 0)//when jump button pressed and on ground (GO TO EDIT -> PROJECT SETTINGS -> INPUT MANAGER TO SEE WHAT VALUES ARE WHAT)
         {
-            rb.velocity = new Vector2(rb.velocity.x, jumpingPower); //y velocity changes
+            rb.velocity = new Vector2(rb.velocity.x, playerStats.jumpingPower); //y velocity changes
+            playerStats.currentJumps -= 1;
         }
 
         if (Input.GetButtonUp("Jump2") && rb.velocity.y > 0f)
@@ -49,13 +83,20 @@ public class Player2Movement : MonoBehaviour
         }
 
 
-
-        if (vertical == -1)
+        Debug.Log(vertical);
+        if (vertical==-1)
         {
-            rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y + fallingStrength);
+            rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y +  fallingStrength);
             downSoundEffect.Play();
         }
 
+
+
+        //DASHING
+        if (Input.GetButtonDown("Dash2") && canDash)
+        {
+            StartCoroutine(Dash());
+        }
 
         Squeeze();
         Flip();
@@ -64,7 +105,61 @@ public class Player2Movement : MonoBehaviour
     }
     private void FixedUpdate() //used for physics calculations (same frequency as physics system)
     {
-        rb.velocity = new Vector2(horizontal * playerStats.speed, rb.velocity.y);
+
+
+        if (isDashing) //prevents additional movement options
+        { return; }
+
+
+        //HORIZONTAL VELOCITY, utilises acceleration, more eased and less robotic movement. 
+
+        float accelRate = fixAccelRate;
+        float targetSpeed = playerStats.speed;
+
+        //APEX OF JUMP CHANGES MIGHT MAKE INTO A FUNCTION
+        if (!IsGrounded() && Mathf.Abs(rb.velocity.y) < apexJumpThreshold)
+        {
+            accelRate = accelRate * apexJumpModifier;  //changes acceleration at apex of jump
+            targetSpeed = targetSpeed * apexJumpModifier;
+        }
+
+        //DAMPENING OF ACCELERATION WHEN AIRBORNE
+        if (!IsGrounded()) 
+        {
+            accelRate = accelRate * airborneDampening; //if the character is airbone, decrease acceleration
+        }
+        else
+        {
+            accelRate = fixAccelRate; //original accelRate
+        }
+
+
+        float speedDif = (targetSpeed * horizontal - rb.velocity.x); //speedDif increases as rb.velocity.x decreases
+        float movement = speedDif * accelRate; //the slower the current velocity, the greater the movement
+           
+        //rb.velocity = new Vector2(horizontal * speed, rb.velocity.y);
+        rb.AddForce(movement * Vector2.right);
+
+
+
+        //VERTICAL VELOCITY
+
+        if (!IsGrounded())
+        {
+            //CLAMPING VERTICAL VELOCITY WHEN GOING DOWN I.E. FORCES A MAX VERTICAL VELOCITY DOWNWARDS
+            if (rb.velocity.y <= -12f) //may make global variables out of drag value and y threshol
+            { rb.drag = 20f; } //uses drag, higher value means object slows down more
+            else
+            { rb.drag = 0f; }
+
+            //HANG TIME, INCREASE UPWARDS FORCE
+            if (Mathf.Abs(rb.velocity.y) <= 2f)
+            {
+                rb.AddForce(5f * Vector2.up);
+            }
+        }
+
+
     }
 
     private bool IsGrounded() //for ground detection
@@ -119,10 +214,10 @@ public class Player2Movement : MonoBehaviour
 
     }
 
-
+  
     private void Squeeze()
     {
-        float squeezeSoften = 0.3f; //softening constant to affect HOW MUCH the player squeezes
+        float squeezeSoften = 0.7f; //softening constant to affect HOW MUCH the player squeezes
         float leeWay = 0.1f; //leeway for Squeeze method, value of y can change a certain amount past its limit and the localScale will still change 
 
 
@@ -130,23 +225,40 @@ public class Player2Movement : MonoBehaviour
         if (horizontal != 0) //only changes when moving
         {
             //0.4f is dependent on the player's x scale value, if you change that, change this accordingly
-            localScale.x = (horizontal * charScale) / ((playerStats.speed + Mathf.Abs(rb.velocity.x) * squeezeSoften) / playerStats.speed);
+            localScale.x = (horizontal * charScale) / ((speed + Mathf.Abs(rb.velocity.x)*squeezeSoften) / speed);
             //scale.x = 1 - 1 / (SPEED - Math.abs(velocity.x)*softeningConstant) / SPEED;
         }
         else
         {
             if (isFacingRight)
-            { localScale.x = charScale; }
+            {localScale.x = charScale;}
             else
-            { localScale.x = -charScale; }
+            {localScale.x = -charScale;}
         }
 
         localScale.y = charScale / (1 + 0.05f * rb.velocity.y);
-        if (Mathf.Abs(localScale.y) <= charScale + leeWay && Mathf.Abs(localScale.x) <= charScale + leeWay)
-        { //can only can be as wide as the initial width and height
+        if (Mathf.Abs(localScale.y) <= charScale+leeWay && Mathf.Abs(localScale.x) <= charScale+leeWay) { //can only can be as wide as the initial width and height
             transform.localScale = localScale;
         }
 
+    }
+
+    private IEnumerator Dash() //interface to control coroutine execution over a period of time, custom iterations
+    {
+        canDash = false;
+        isDashing = true;
+        float origGravity = rb.gravityScale;
+        rb.gravityScale = 0f;
+
+        rb.AddForce(horizontal * dashingPower * Vector2.right);
+        if (horizontal != 0)
+        { rb.AddForce(vertical * 1f * dashingPower * Vector2.up); }
+        yield return new WaitForSeconds(dashingTime);
+        //tr.startColor = Color.white;
+        rb.gravityScale = origGravity;
+        isDashing = false;
+        yield return new WaitForSeconds(playerStats.dashCooldown);
+        canDash = true;
     }
 
 }
