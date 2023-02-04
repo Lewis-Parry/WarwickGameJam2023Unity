@@ -31,6 +31,8 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float dashingTime = 0.2f;
 
 
+  
+
     [SerializeField] private Rigidbody2D rb; //rb for rigid body 2d reference to component
     [SerializeField] private Transform groundCheck;
     [SerializeField] private LayerMask groundLayer;
@@ -56,7 +58,6 @@ public class PlayerMovement : MonoBehaviour
 
 
         fixTargetSpeed = playerStats.speed;
-        float jumpingPower = playerStats.jumpingPower;
 
         rotateBack();
 
@@ -65,16 +66,16 @@ public class PlayerMovement : MonoBehaviour
 
         Debug.Log(IsGrounded());
 
+
         if (Input.GetButtonDown("Jump") && IsGrounded())//when jump button pressed and on ground (GO TO EDIT -> PROJECT SETTINGS -> INPUT MANAGER TO SEE WHAT VALUES ARE WHAT)
         {
-            rb.velocity = new Vector2(rb.velocity.x, jumpingPower); //y velocity changes
+            rb.velocity = new Vector2(rb.velocity.x, playerStats.jumpingPower); //y velocity changes
         }
 
         if (Input.GetButtonUp("Jump") && rb.velocity.y > 0f)
         {//release up button whilst still in air, jump higher vs jump lower
             rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y * 0.5f);
         }
-
 
         Debug.Log(vertical);
         if (vertical==-1)
@@ -154,6 +155,7 @@ public class PlayerMovement : MonoBehaviour
 
 
     }
+
 
     private bool IsGrounded() //for ground detection
     {
@@ -254,5 +256,4 @@ public class PlayerMovement : MonoBehaviour
         canDash = true;
     }
 
-}
 
