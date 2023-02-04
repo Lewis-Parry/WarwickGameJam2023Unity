@@ -29,7 +29,6 @@ public class PlayerMovement : MonoBehaviour
     private bool isDashing;
     [SerializeField] private float dashingPower = 300f;
     [SerializeField] private float dashingTime = 0.2f;
-    [SerializeField] private float dashingCooldown = 0.5f;
 
     [SerializeField] private Rigidbody2D rb; //rb for rigid body 2d reference to component
     [SerializeField] private Transform groundCheck;
@@ -249,7 +248,7 @@ public class PlayerMovement : MonoBehaviour
         //tr.startColor = Color.white;
         rb.gravityScale = origGravity;
         isDashing = false;
-        yield return new WaitForSeconds(dashingCooldown);
+        yield return new WaitForSeconds(playerStats.dashCooldown);
         canDash = true;
     }
 
