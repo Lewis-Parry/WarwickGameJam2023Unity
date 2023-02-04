@@ -22,11 +22,11 @@ public class PlayerHealth : MonoBehaviour
             TakeDamage(10);
         }
 
-        if(playerStats.health <= 0) {
+        if(playerStats.health <= 0) { //if health is 0 take away a life
             playerStats.numberLives =- 1;
         }
 
-        if(playerStats.numberLives <= 0){
+        if(playerStats.numberLives <= 0){ //if no lives are remaining die
             playerStats.isAlive = false;
         }
     }
