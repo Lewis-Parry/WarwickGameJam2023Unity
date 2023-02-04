@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class PlayerStats : MonoBehaviour
 {
+    public string playerName;
     public float speed;
     public float health;
     public bool isAlive = true;
