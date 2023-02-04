@@ -37,14 +37,13 @@ public class Player2Movement : MonoBehaviour
     [SerializeField] private AudioSource downSoundEffect;
 
     [SerializeField] private TrailRenderer tr;
-    
+    [SerializeField] private ParticleSystem ps;
 
     public Transform Player; //referencing Player Inspector values
-    // Start is called before the first frame update
+                             // Start is called before the first frame update
 
     void Start()
     {
-        
     }
 
     // Update is called once per frame
@@ -245,8 +244,11 @@ public class Player2Movement : MonoBehaviour
 
     private IEnumerator Dash() //interface to control coroutine execution over a period of time, custom iterations
     {
+
         canDash = false;
         isDashing = true;
+        tr.startColor = Color.red;
+        tr.endColor = Color.blue;
         float origGravity = rb.gravityScale;
         rb.gravityScale = 0f;
 

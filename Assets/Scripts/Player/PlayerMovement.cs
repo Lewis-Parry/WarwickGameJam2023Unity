@@ -47,7 +47,7 @@ public class PlayerMovement : MonoBehaviour
 
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
@@ -246,19 +246,32 @@ public class PlayerMovement : MonoBehaviour
 
     private IEnumerator Dash() //interface to control coroutine execution over a period of time, custom iterations
     {
+
+        tr = Player.GetComponent<TrailRenderer>(); //change trail effect
+        UnityEngine.Color origStartColor = tr.startColor;
+        UnityEngine.Color origEndColor = tr.endColor;
+        tr.startColor = new Color(255, 0, 0);
+        tr.endColor = new Color(200, 80, 80, 0);
+
         canDash = false;
         isDashing = true;
         float origGravity = rb.gravityScale;
         rb.gravityScale = 0f;
 
-        rb.AddForce(horizontal * dashingPower * Vector2.right);
+        rb.AddForce(horizontal * 2f* dashingPower * Vector2.right);
         if (horizontal != 0)
-        { rb.AddForce(vertical * 1f * dashingPower * Vector2.up); }
+        { rb.AddForce(vertical * 0.8f * dashingPower * Vector2.up); }
         yield return new WaitForSeconds(dashingTime);
-        //tr.startColor = Color.white;
-        rb.gravityScale = origGravity;
         isDashing = false;
+        rb.gravityScale = origGravity;
+        yield return new WaitForSeconds(0.4f);
+        tr.startColor = origStartColor;//revert back color of trail
+        tr.endColor = origEndColor;
+        rb.gravityScale = origGravity;
         yield return new WaitForSeconds(playerStats.dashCooldown);
+        tr.startColor = origStartColor;//revert back
+        tr.endColor = origEndColor;
+        rb.gravityScale = origGravity;
         canDash = true;
     }
 }   
