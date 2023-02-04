@@ -29,10 +29,7 @@ public class PlayerMovement : MonoBehaviour
     private bool isDashing;
     [SerializeField] private float dashingPower = 100f;
     [SerializeField] private float dashingTime = 0.2f;
-<<<<<<< Updated upstream
-=======
-    [SerializeField] private float dashingCooldown = 0.1f;
->>>>>>> Stashed changes
+
 
     [SerializeField] private Rigidbody2D rb; //rb for rigid body 2d reference to component
     [SerializeField] private Transform groundCheck;

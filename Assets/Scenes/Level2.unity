@@ -5848,19 +5848,19 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1036516235056034516, guid: 3a53aa9cabf12e34ea7328691f12e7bd, type: 3}
       propertyPath: m_AnchorMax.x
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1036516235056034516, guid: 3a53aa9cabf12e34ea7328691f12e7bd, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1036516235333700016, guid: 3a53aa9cabf12e34ea7328691f12e7bd, type: 3}
       propertyPath: m_AnchorMax.x
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1036516235333700016, guid: 3a53aa9cabf12e34ea7328691f12e7bd, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1036516235966448939, guid: 3a53aa9cabf12e34ea7328691f12e7bd, type: 3}
       propertyPath: m_Name
@@ -5868,8 +5868,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1036516235966448939, guid: 3a53aa9cabf12e34ea7328691f12e7bd, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 1036516235966448940, guid: 3a53aa9cabf12e34ea7328691f12e7bd, type: 3}
+      propertyPath: m_Camera
+      value: 
+      objectReference: {fileID: 989617931}
     - target: {fileID: 1036516235966448943, guid: 3a53aa9cabf12e34ea7328691f12e7bd, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -6047,6 +6051,7 @@ MonoBehaviour:
   isAlive: 1
   numberLives: 1
   jumpingPower: 10
+  dashCooldown: 1
 --- !u!114 &748059637
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6283,9 +6288,8 @@ MonoBehaviour:
   airborneDampening: 0.8
   apexJumpModifier: 1.6
   apexJumpThreshold: 7
-  dashingPower: 24
+  dashingPower: 200
   dashingTime: 0.2
-  dashingCooldown: 1
   rb: {fileID: 748059642}
   groundCheck: {fileID: 326930812}
   groundLayer:
@@ -7762,6 +7766,7 @@ MonoBehaviour:
   isAlive: 1
   numberLives: 1
   jumpingPower: 15
+  dashCooldown: 1
 --- !u!114 &1772413271
 MonoBehaviour:
   m_ObjectHideFlags: 0
