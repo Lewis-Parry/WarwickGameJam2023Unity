@@ -73,13 +73,13 @@ public class Player2Movement : MonoBehaviour
 
         if (Input.GetButtonDown("Jump2") && playerStats.currentJumps > 0)//when jump button pressed and on ground (GO TO EDIT -> PROJECT SETTINGS -> INPUT MANAGER TO SEE WHAT VALUES ARE WHAT)
         {
-            rb.velocity = new Vector2(rb.velocity.x, playerStats.jumpingPower); //y velocity changes
+            rb.velocity = new Vector2(rb.velocity.x, playerStats.jumpingPower + playerStats.speed * 0.01f); //y velocity changes
             playerStats.currentJumps -= 1;
         }
 
         if (Input.GetButtonUp("Jump2") && rb.velocity.y > 0f)
         {//release up button whilst still in air, jump higher vs jump lower
-            rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y * 0.5f);
+            rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y * 0.5f + playerStats.speed * 0.01f);
         }
 
 

@@ -39,6 +39,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private AudioSource downSoundEffect;
 
     [SerializeField] private TrailRenderer tr;
+    [SerializeField] private ParticleSystem pSyst;
 
 
     public Transform Player; //referencing Player Inspector values
@@ -46,7 +47,7 @@ public class PlayerMovement : MonoBehaviour
 
     void Start()
     {
-
+        
     }
 
     // Update is called once per frame
@@ -81,7 +82,6 @@ public class PlayerMovement : MonoBehaviour
             rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y * 0.5f + playerStats.speed * 0.01f);
         }
 
-        Debug.Log(vertical);
         if (vertical == -1)
         {
 
