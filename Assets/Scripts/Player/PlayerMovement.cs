@@ -31,7 +31,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float dashingTime = 0.2f;
 
 
-  
+
 
     [SerializeField] private Rigidbody2D rb; //rb for rigid body 2d reference to component
     [SerializeField] private Transform groundCheck;
@@ -39,14 +39,14 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private AudioSource downSoundEffect;
 
     [SerializeField] private TrailRenderer tr;
-    
+
 
     public Transform Player; //referencing Player Inspector values
     // Start is called before the first frame update
 
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
@@ -54,8 +54,12 @@ public class PlayerMovement : MonoBehaviour
     {
 
         if (isDashing) //prevents additional movement options
-        {return;}
+        { return; }
 
+        if (IsGrounded()) //doubleJumps
+        {
+            playerStats.currentJumps = playerStats.numberJumps;
+        }
 
         fixTargetSpeed = playerStats.speed;
 
@@ -64,12 +68,12 @@ public class PlayerMovement : MonoBehaviour
         horizontal = Input.GetAxisRaw("Horizontal"); //returns -1, 0 or 1 depending on direction moving (button dependent)
         vertical = Input.GetAxisRaw("Vertical");
 
-        Debug.Log(IsGrounded());
 
 
-        if (Input.GetButtonDown("Jump") && IsGrounded())//when jump button pressed and on ground (GO TO EDIT -> PROJECT SETTINGS -> INPUT MANAGER TO SEE WHAT VALUES ARE WHAT)
+        if (Input.GetButtonDown("Jump") && playerStats.currentJumps > 0)//when jump button pressed and on ground (GO TO EDIT -> PROJECT SETTINGS -> INPUT MANAGER TO SEE WHAT VALUES ARE WHAT)
         {
             rb.velocity = new Vector2(rb.velocity.x, playerStats.jumpingPower); //y velocity changes
+            playerStats.currentJumps -= 1;
         }
 
         if (Input.GetButtonUp("Jump") && rb.velocity.y > 0f)
@@ -78,9 +82,9 @@ public class PlayerMovement : MonoBehaviour
         }
 
         Debug.Log(vertical);
-        if (vertical==-1)
+        if (vertical == -1)
         {
-            rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y +  fallingStrength);
+            rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y + fallingStrength);
             downSoundEffect.Play();
         }
 
@@ -118,7 +122,7 @@ public class PlayerMovement : MonoBehaviour
         }
 
         //DAMPENING OF ACCELERATION WHEN AIRBORNE
-        if (!IsGrounded()) 
+        if (!IsGrounded())
         {
             accelRate = accelRate * airborneDampening; //if the character is airbone, decrease acceleration
         }
@@ -130,7 +134,7 @@ public class PlayerMovement : MonoBehaviour
 
         float speedDif = (targetSpeed * horizontal - rb.velocity.x); //speedDif increases as rb.velocity.x decreases
         float movement = speedDif * accelRate; //the slower the current velocity, the greater the movement
-           
+
         //rb.velocity = new Vector2(horizontal * speed, rb.velocity.y);
         rb.AddForce(movement * Vector2.right);
 
@@ -209,7 +213,7 @@ public class PlayerMovement : MonoBehaviour
 
     }
 
-  
+
     private void Squeeze()
     {
         float squeezeSoften = 0.7f; //softening constant to affect HOW MUCH the player squeezes
@@ -220,19 +224,20 @@ public class PlayerMovement : MonoBehaviour
         if (horizontal != 0) //only changes when moving
         {
             //0.4f is dependent on the player's x scale value, if you change that, change this accordingly
-            localScale.x = (horizontal * charScale) / ((speed + Mathf.Abs(rb.velocity.x)*squeezeSoften) / speed);
+            localScale.x = (horizontal * charScale) / ((speed + Mathf.Abs(rb.velocity.x) * squeezeSoften) / speed);
             //scale.x = 1 - 1 / (SPEED - Math.abs(velocity.x)*softeningConstant) / SPEED;
         }
         else
         {
             if (isFacingRight)
-            {localScale.x = charScale;}
+            { localScale.x = charScale; }
             else
-            {localScale.x = -charScale;}
+            { localScale.x = -charScale; }
         }
 
         localScale.y = charScale / (1 + 0.05f * rb.velocity.y);
-        if (Mathf.Abs(localScale.y) <= charScale+leeWay && Mathf.Abs(localScale.x) <= charScale+leeWay) { //can only can be as wide as the initial width and height
+        if (Mathf.Abs(localScale.y) <= charScale + leeWay && Mathf.Abs(localScale.x) <= charScale + leeWay)
+        { //can only can be as wide as the initial width and height
             transform.localScale = localScale;
         }
 
@@ -255,5 +260,6 @@ public class PlayerMovement : MonoBehaviour
         yield return new WaitForSeconds(playerStats.dashCooldown);
         canDash = true;
     }
+}   
 
 
