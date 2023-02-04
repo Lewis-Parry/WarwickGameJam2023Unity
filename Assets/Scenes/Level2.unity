@@ -6051,6 +6051,7 @@ MonoBehaviour:
   isAlive: 1
   numberLives: 1
   jumpingPower: 10
+  dashCooldown: 1
 --- !u!114 &748059637
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6287,9 +6288,8 @@ MonoBehaviour:
   airborneDampening: 0.8
   apexJumpModifier: 1.6
   apexJumpThreshold: 7
-  dashingPower: 24
+  dashingPower: 200
   dashingTime: 0.2
-  dashingCooldown: 1
   rb: {fileID: 748059642}
   groundCheck: {fileID: 326930812}
   groundLayer:
@@ -7766,6 +7766,7 @@ MonoBehaviour:
   isAlive: 1
   numberLives: 1
   jumpingPower: 15
+  dashCooldown: 1
 --- !u!114 &1772413271
 MonoBehaviour:
   m_ObjectHideFlags: 0
