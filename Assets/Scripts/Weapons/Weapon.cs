@@ -8,47 +8,116 @@ public class Weapon : MonoBehaviour
    // private Vector3 rest = new Vector3(0, 0, 0);
     //private Vector3 swung = new Vector3(0, 0, 90);
     private bool isSwinging = false;
+    public GameObject pivot;
+    private bool isLeft;
+    private float horizontal = 1;
+    private float input = 1;
+    private float damage = 10;
+    Quaternion wantedRotation;
+    private string fireKey;
+    private bool collided = false;
+    private float swingSpeed = 250f;
 
 
     public PlayerStats playerStats;
+    
+
     // Start is called before the first frame update
     void Start()
     {
-      gameObject.GetComponent<SpriteRenderer>().enabled = false;
+      gameObject.GetComponent<SpriteRenderer>().enabled = false; //makes sword invisible
+      getPlayerFireKey(); 
     }
 
     // Update is called once per frame
     void Update()
     {
-         if (Input.GetButtonUp("Jump") || isSwinging)
+        getHorizontalInput(); 
+
+        if (Input.GetButtonUp(fireKey) || isSwinging) //if fire key switched start swinging and continue swinging not at 90 degrees
         {
-           isSwinging = true;
-            Swing();
+           Swing();
         }
     }
+
+    
+    public void OnTriggerEnter2D(Collider2D collision) //on collision 
+    {
+        if(collision.tag == "Player") { // check if collided with a player 
+
+            if(!isSwinging || collided) { // if the sword is not swinging or has already hit a player return
+                return;
+            }
+
+            collided = true; 
+
+            PlayerHealth enemyHealth = collision.gameObject.GetComponent<PlayerHealth>(); //gets enemy health
+            PlayerStats enemyStats = collision.gameObject.GetComponent<PlayerStats>(); //gets enemy stats
+
+            if(enemyStats.playerName == playerStats.playerName){ // if colliding with sword owner return
+                return;
+            }
+            enemyHealth.TakeDamage(damage); //deal damage to player
+        }
+    }
+
+
+    void getHorizontalInput() { //returns the correct horizontal input depending on the player
+        if(playerStats.playerName == "player1"){ // if sword owner is player 1
+            input = Input.GetAxisRaw("Horizontal"); // get horizontal input , 0, 1 ,-1
+            if(input == 0) { // if going in no direction return
+                return;
+            }
+            horizontal = input; //sets horizontal direction
+        } else {
+            input = Input.GetAxisRaw("Horizontal2");
+            if(input == 0) {
+                    return;
+            }
+            horizontal = input;
+        }
+    }
+
 
     void Swing() {
-        
-        gameObject.GetComponent<SpriteRenderer>().enabled = true;
-        Quaternion currentRotation = transform.rotation;
-        Quaternion wantedRotation = Quaternion.Euler(0,0,90);
+        Quaternion currentRotation = pivot.transform.rotation; //gets current rotation
 
-        if(transform.rotation == wantedRotation){
+        gameObject.GetComponent<SpriteRenderer>().enabled = true; //makes sword visable
+        isSwinging = true;
 
-            isSwinging = false;
-            gameObject.GetComponent<SpriteRenderer>().enabled = false;
-            transform.Rotate(new Vector3(0, 0, 90));
+        setRotationDirection(); 
+
+        if(pivot.transform.rotation == wantedRotation){ //checks if the sword has finished rotating
+            Reset();
             return;
-
         }
-
         if(isSwinging) {
-
-            transform.rotation = Quaternion.RotateTowards(currentRotation, wantedRotation, Time.deltaTime*250f);    
-
+            pivot.transform.rotation = Quaternion.RotateTowards(currentRotation, wantedRotation, Time.deltaTime*swingSpeed); // swing
         }
-        
-        //gameObject.GetComponent<SpriteRenderer>().enabled = false;
-        
+    }
+
+    void setRotationDirection() { //sets direction to swing based on direction player is facing
+        if(horizontal == 1){
+            wantedRotation = Quaternion.Euler(0,0,-90);
+        } else {
+            wantedRotation = Quaternion.Euler(0,0,90);
+        }
+    }
+
+    void Reset() { // reset after finishing swinging 
+        isSwinging = false;
+        collided = false;
+        gameObject.GetComponent<SpriteRenderer>().enabled = false; // turn invisible
+        pivot.transform.rotation = Quaternion.identity; // turn upright
+    }
+
+    void getPlayerFireKey() { //gets the fire key of sword owner
+        if(playerStats.playerName == "player1"){
+            fireKey = "Fire1";
+        } else if(playerStats.playerName == "player2") {
+            fireKey = "Fire2";
+        }
     }
 }
+
+
