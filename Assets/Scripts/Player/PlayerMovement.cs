@@ -27,7 +27,7 @@ public class PlayerMovement : MonoBehaviour
     //DASHING GLOBAL VARIABLES
     private bool canDash = true;
     private bool isDashing;
-    [SerializeField] private float dashingPower = 100f;
+    [SerializeField] private float dashingPower = 150f;
     [SerializeField] private float dashingTime = 0.2f;
 
 
@@ -72,18 +72,19 @@ public class PlayerMovement : MonoBehaviour
 
         if (Input.GetButtonDown("Jump") && playerStats.currentJumps > 0)//when jump button pressed and on ground (GO TO EDIT -> PROJECT SETTINGS -> INPUT MANAGER TO SEE WHAT VALUES ARE WHAT)
         {
-            rb.velocity = new Vector2(rb.velocity.x, playerStats.jumpingPower); //y velocity changes
+            rb.velocity = new Vector2(rb.velocity.x, playerStats.jumpingPower + playerStats.speed * 0.01f); //y velocity changes
             playerStats.currentJumps -= 1;
         }
 
         if (Input.GetButtonUp("Jump") && rb.velocity.y > 0f)
         {//release up button whilst still in air, jump higher vs jump lower
-            rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y * 0.5f);
+            rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y * 0.5f + playerStats.speed * 0.01f);
         }
 
         Debug.Log(vertical);
         if (vertical == -1)
         {
+
             rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y + fallingStrength);
             downSoundEffect.Play();
         }
