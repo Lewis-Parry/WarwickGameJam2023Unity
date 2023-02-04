@@ -27,8 +27,15 @@ public class WinScreen : MonoBehaviour
         {
             PlayerStats playerStats = (PlayerStats) players[i].GetComponent<PlayerStats>(); //stores a given players stats
 
-            if(playerStats.isAlive == false) { //checks if this player is alive
-                win();           
+            if(playerStats.isAlive == false) { //checks a player is alive
+
+                Scene scene = SceneManager.GetActiveScene();
+
+                if(scene.name != "Level2"){
+                    SceneManager.LoadScene(scene.buildIndex + 1);
+                } else {
+                    win();
+                }       
             }
         }
     }
