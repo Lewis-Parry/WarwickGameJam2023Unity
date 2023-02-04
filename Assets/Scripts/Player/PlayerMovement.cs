@@ -27,8 +27,12 @@ public class PlayerMovement : MonoBehaviour
     //DASHING GLOBAL VARIABLES
     private bool canDash = true;
     private bool isDashing;
-    [SerializeField] private float dashingPower = 300f;
+    [SerializeField] private float dashingPower = 100f;
     [SerializeField] private float dashingTime = 0.2f;
+<<<<<<< Updated upstream
+=======
+    [SerializeField] private float dashingCooldown = 0.1f;
+>>>>>>> Stashed changes
 
     [SerializeField] private Rigidbody2D rb; //rb for rigid body 2d reference to component
     [SerializeField] private Transform groundCheck;
@@ -85,7 +89,7 @@ public class PlayerMovement : MonoBehaviour
 
 
         //DASHING
-        if (Input.GetButtonDown("Fire1") && !IsGrounded() && canDash)
+        if (Input.GetButtonDown("Dash") && canDash)
         {
             StartCoroutine(Dash());
         }
@@ -243,7 +247,8 @@ public class PlayerMovement : MonoBehaviour
         rb.gravityScale = 0f;
 
         rb.AddForce(horizontal * dashingPower * Vector2.right);
-        rb.AddForce(vertical * 2f * dashingPower * Vector2.up);
+        if (horizontal != 0)
+        { rb.AddForce(vertical * 1f * dashingPower * Vector2.up); }
         yield return new WaitForSeconds(dashingTime);
         //tr.startColor = Color.white;
         rb.gravityScale = origGravity;

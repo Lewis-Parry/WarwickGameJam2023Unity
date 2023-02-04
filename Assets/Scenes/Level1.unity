@@ -5554,8 +5554,8 @@ MonoBehaviour:
   airborneDampening: 0.8
   apexJumpModifier: 1.6
   apexJumpThreshold: 7
-  dashingPower: 24
-  dashingTime: 0.2
+  dashingPower: 200
+  dashingTime: 0.1
   dashingCooldown: 1
   rb: {fileID: 153045386}
   groundCheck: {fileID: 469059116}
@@ -9158,7 +9158,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1036516235184084759, guid: 3a53aa9cabf12e34ea7328691f12e7bd, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -322.99997
+      value: -323
       objectReference: {fileID: 0}
     - target: {fileID: 1036516235333700016, guid: 3a53aa9cabf12e34ea7328691f12e7bd, type: 3}
       propertyPath: m_AnchorMax.x
