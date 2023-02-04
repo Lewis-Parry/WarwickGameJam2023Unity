@@ -5556,7 +5556,6 @@ MonoBehaviour:
   apexJumpThreshold: 7
   dashingPower: 200
   dashingTime: 0.1
-  dashingCooldown: 1
   rb: {fileID: 153045386}
   groundCheck: {fileID: 469059116}
   groundLayer:
@@ -5711,6 +5710,9 @@ MonoBehaviour:
   isAlive: 1
   numberLives: 1
   jumpingPower: 10
+  dashCooldown: 1
+  numberJumps: 1
+  currentJumps: 1
 --- !u!1 &273934576
 GameObject:
   m_ObjectHideFlags: 0
@@ -8152,15 +8154,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c1cd81ff79346f64fa1cc730082a6fc8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerStats: {fileID: 801797965}
-  horizontal: 0
   charScale: 0.33
+  playerStats: {fileID: 801797965}
+  fixAccelRate: 6
+  airborneDampening: 0.8
+  apexJumpModifier: 1.6
+  apexJumpThreshold: 7
+  dashingPower: 100
+  dashingTime: 0.2
   rb: {fileID: 801797960}
   groundCheck: {fileID: 1282901997}
   groundLayer:
     serializedVersion: 2
     m_Bits: 64
   downSoundEffect: {fileID: 801797956}
+  tr: {fileID: 0}
   Player: {fileID: 801797962}
 --- !u!114 &801797964
 MonoBehaviour:
@@ -8193,6 +8201,9 @@ MonoBehaviour:
   isAlive: 1
   numberLives: 1
   jumpingPower: 8
+  dashCooldown: 1
+  numberJumps: 1
+  currentJumps: 1
 --- !u!114 &1252206075 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 1036516235791541178, guid: 3a53aa9cabf12e34ea7328691f12e7bd, type: 3}
@@ -9158,7 +9169,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1036516235184084759, guid: 3a53aa9cabf12e34ea7328691f12e7bd, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -323
+      value: -322.99997
       objectReference: {fileID: 0}
     - target: {fileID: 1036516235333700016, guid: 3a53aa9cabf12e34ea7328691f12e7bd, type: 3}
       propertyPath: m_AnchorMax.x
