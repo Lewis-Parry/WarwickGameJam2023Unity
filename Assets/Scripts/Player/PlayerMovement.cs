@@ -24,11 +24,19 @@ public class PlayerMovement : MonoBehaviour
     private bool isFacingRight = true;
 
 
+    //DASHING GLOBAL VARIABLES
+    private bool canDash = true;
+    private bool isDashing;
+    [SerializeField] private float dashingPower = 24f;
+    [SerializeField] private float dashingTime = 0.2f;
+    [SerializeField] private float dashingCooldown = 1f;
+
     [SerializeField] private Rigidbody2D rb; //rb for rigid body 2d reference to component
     [SerializeField] private Transform groundCheck;
     [SerializeField] private LayerMask groundLayer;
     [SerializeField] private AudioSource downSoundEffect;
-    
+
+    [SerializeField] private TrailRenderer tr;
     
 
     public Transform Player; //referencing Player Inspector values
@@ -42,6 +50,11 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
+        if (isDashing) //prevents additional movement options
+        {return;}
+
+
         fixTargetSpeed = playerStats.speed;
         float jumpingPower = playerStats.jumpingPower;
 
@@ -71,6 +84,13 @@ public class PlayerMovement : MonoBehaviour
         }
 
 
+
+        //DASHING
+        if (Input.GetButtonDown("Fire1") && !IsGrounded() && canDash)
+        {
+            StartCoroutine(Dash());
+        }
+
         Squeeze();
         Flip();
 
@@ -78,6 +98,12 @@ public class PlayerMovement : MonoBehaviour
     }
     private void FixedUpdate() //used for physics calculations (same frequency as physics system)
     {
+
+
+        if (isDashing) //prevents additional movement options
+        { return; }
+
+
         //HORIZONTAL VELOCITY, utilises acceleration, more eased and less robotic movement. 
 
         float accelRate = fixAccelRate;
@@ -208,6 +234,28 @@ public class PlayerMovement : MonoBehaviour
             transform.localScale = localScale;
         }
 
+    }
+
+    private IEnumerator Dash() //interface to control coroutine execution over a period of time, custom iterations
+    {
+        canDash = false;
+        isDashing = true;
+        float origGravity = rb.gravityScale;
+        rb.gravityScale = 0f;
+        if (horizontal != 0)
+        {
+            rb.AddForce(horizontal * dashingPower * Vector2.right);
+            //rb.velocity = new Vector2(horizontal * dashingPower, 0f);
+        }
+        else
+        {
+            rb.AddForce(dashingPower * Vector2.right);
+        }
+        yield return new WaitForSeconds(dashingTime);
+        rb.gravityScale = origGravity;
+        isDashing = false;
+        yield return new WaitForSeconds(dashingCooldown);
+        canDash = true;
     }
 
 }
