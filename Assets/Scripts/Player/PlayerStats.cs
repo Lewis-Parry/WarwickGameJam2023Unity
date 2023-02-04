@@ -10,7 +10,7 @@ public class PlayerStats : MonoBehaviour
     public int numberLives;
     public float jumpingPower = 15f;
     public float dashCooldown = 1f;
-    public integer numberJumps = 2;
-    public integer currentJumps = 1;
+    public int numberJumps = 2;
+    public int currentJumps = 1;
 
 }
