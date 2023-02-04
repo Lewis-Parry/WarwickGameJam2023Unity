@@ -27,9 +27,9 @@ public class PlayerMovement : MonoBehaviour
     //DASHING GLOBAL VARIABLES
     private bool canDash = true;
     private bool isDashing;
-    [SerializeField] private float dashingPower = 24f;
+    [SerializeField] private float dashingPower = 300f;
     [SerializeField] private float dashingTime = 0.2f;
-    [SerializeField] private float dashingCooldown = 1f;
+    [SerializeField] private float dashingCooldown = 0.5f;
 
     [SerializeField] private Rigidbody2D rb; //rb for rigid body 2d reference to component
     [SerializeField] private Transform groundCheck;
@@ -242,16 +242,11 @@ public class PlayerMovement : MonoBehaviour
         isDashing = true;
         float origGravity = rb.gravityScale;
         rb.gravityScale = 0f;
-        if (horizontal != 0)
-        {
-            rb.AddForce(horizontal * dashingPower * Vector2.right);
-            //rb.velocity = new Vector2(horizontal * dashingPower, 0f);
-        }
-        else
-        {
-            rb.AddForce(dashingPower * Vector2.right);
-        }
+
+        rb.AddForce(horizontal * dashingPower * Vector2.right);
+        rb.AddForce(vertical * 2f * dashingPower * Vector2.up);
         yield return new WaitForSeconds(dashingTime);
+        //tr.startColor = Color.white;
         rb.gravityScale = origGravity;
         isDashing = false;
         yield return new WaitForSeconds(dashingCooldown);
