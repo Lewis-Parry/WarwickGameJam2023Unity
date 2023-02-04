@@ -54,6 +54,11 @@ public class Player2Movement : MonoBehaviour
         if (isDashing) //prevents additional movement options
         {return;}
 
+         if (IsGrounded()) //doubleJumps
+        {
+            playerStats.currentJumps = playerStats.numberJumps;
+        }
+
 
         fixTargetSpeed = playerStats.speed;
         float jumpingPower = playerStats.jumpingPower;
@@ -65,9 +70,11 @@ public class Player2Movement : MonoBehaviour
 
         Debug.Log(IsGrounded());
 
-        if (Input.GetButtonDown("Jump2") && IsGrounded())//when jump button pressed and on ground (GO TO EDIT -> PROJECT SETTINGS -> INPUT MANAGER TO SEE WHAT VALUES ARE WHAT)
+
+        if (Input.GetButtonDown("Jump") && playerStats.currentJumps > 0)//when jump button pressed and on ground (GO TO EDIT -> PROJECT SETTINGS -> INPUT MANAGER TO SEE WHAT VALUES ARE WHAT)
         {
-            rb.velocity = new Vector2(rb.velocity.x, jumpingPower); //y velocity changes
+            rb.velocity = new Vector2(rb.velocity.x, playerStats.jumpingPower); //y velocity changes
+            playerStats.currentJumps -= 1;
         }
 
         if (Input.GetButtonUp("Jump2") && rb.velocity.y > 0f)
