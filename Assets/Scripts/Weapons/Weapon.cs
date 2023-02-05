@@ -4,23 +4,24 @@ using UnityEngine;
 
 public class Weapon : MonoBehaviour
 {
-    
-   // private Vector3 rest = new Vector3(0, 0, 0);
-    //private Vector3 swung = new Vector3(0, 0, 90);
-    private bool isSwinging = false;
-    public GameObject pivot;
+
     private bool isLeft;
     private float horizontal = 1;
     private float input = 1;
-    private float damage = 10;
-    Quaternion wantedRotation;
-    private string fireKey;
-    private bool collided = false;
-    private float swingSpeed = 250f;
-
-
-    public PlayerStats playerStats;
     
+    Quaternion wantedRotation; // where to rotate to when swinging 
+
+    private string fireKey;
+
+    private bool collided = false; // if the sword has collding with the player during the current swing
+    private bool isSwinging = false; 
+
+    private float damage = 10;
+
+    public WeaponStats weaponStats;
+    public PlayerStats playerStats; 
+    
+    public GameObject pivot; // pivot to rotate around
 
     // Start is called before the first frame update
     void Start()
@@ -92,7 +93,7 @@ public class Weapon : MonoBehaviour
             return;
         }
         if(isSwinging) {
-            pivot.transform.rotation = Quaternion.RotateTowards(currentRotation, wantedRotation, Time.deltaTime*swingSpeed); // swing
+            pivot.transform.rotation = Quaternion.RotateTowards(currentRotation, wantedRotation, Time.deltaTime*weaponStats.fireRate); // swing
         }
     }
 

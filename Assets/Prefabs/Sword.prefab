@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 4083666264187531083}
   - component: {fileID: 5338493559971944541}
   - component: {fileID: 6580409539406027083}
+  - component: {fileID: 8653307987193776986}
   m_Layer: 0
   m_Name: Blade
   m_TagString: Untagged
@@ -125,9 +126,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1541e70660039b64fac458e373daf7b7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pivot: {fileID: 8925242796424427678}
+  weaponStats: {fileID: 8653307987193776986}
   playerStats: {fileID: 0}
-  playerHealth: {fileID: 0}
+  pivot: {fileID: 8925242796424427678}
 --- !u!50 &6580409539406027083
 Rigidbody2D:
   serializedVersion: 4
@@ -149,6 +150,19 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 1
   m_Constraints: 0
+--- !u!114 &8653307987193776986
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7962236633579181525}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 818c4960a1adeae46b590de88f2ce502, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  swingSpeed: 250
 --- !u!1 &8925242796424427678
 GameObject:
   m_ObjectHideFlags: 0
