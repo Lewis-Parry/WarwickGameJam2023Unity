@@ -197,15 +197,17 @@ public class PlayerMovement : MonoBehaviour
 
 
 
-
+   // public GameObject Blade1; //referencing the Blade Object's weapon script
+   // private Weapon weaponScript;
     private void Flip() //flip and squeeze sprite model
     {
-        if (isFacingRight && horizontal < 0f || !isFacingRight && horizontal > 0f)
+        //weaponScript = Blade1.GetComponent<Weapon>();
+        if (isFacingRight && horizontal < 0f || !isFacingRight && horizontal > 0f )
         {
-            isFacingRight = !isFacingRight;
-            Vector3 localScale = transform.localScale;
-            localScale.x *= -1f;  //multiples Player's x component by -1
-            transform.localScale = localScale; //applies transformation
+         isFacingRight = !isFacingRight;
+         Vector3 localScale = transform.localScale;
+         localScale.x *= -1f;  //multiples Player's x component by -1
+         transform.localScale = localScale; //applies transformation
         }
 
     }
@@ -246,6 +248,7 @@ public class PlayerMovement : MonoBehaviour
         tr = Player.GetComponent<TrailRenderer>(); //change trail effect
         UnityEngine.Color origStartColor = tr.startColor;
         UnityEngine.Color origEndColor = tr.endColor;
+        tr.emitting = true;
         tr.startColor = new Color(255, 0, 0);
         tr.endColor = new Color(200, 80, 80, 0);
 
@@ -256,7 +259,7 @@ public class PlayerMovement : MonoBehaviour
 
         //rb.AddForce(horizontal * 2f* dashingPower * Vector2.right);
         rb.velocity = new Vector2(horizontal * 0.5f * dashingPower, rb.velocity.y);
-        if (horizontal != 0)
+        if (vertical != 1)
         // rb.AddForce(vertical * 0.8f * dashingPower * Vector2.up);
         { rb.velocity = new Vector2(rb.velocity.x, vertical * 0.3f * dashingPower); }
             yield return new WaitForSeconds(dashingTime);
@@ -265,6 +268,7 @@ public class PlayerMovement : MonoBehaviour
         yield return new WaitForSeconds(0.4f);
         tr.startColor = origStartColor;//revert back color of trail
         tr.endColor = origEndColor;
+        tr.emitting = false;
         rb.gravityScale = origGravity;
         yield return new WaitForSeconds(playerStats.dashCooldown);
         tr.startColor = origStartColor;//revert back

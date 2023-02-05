@@ -7,16 +7,20 @@ public class Weapon : MonoBehaviour
     
    // private Vector3 rest = new Vector3(0, 0, 0);
     //private Vector3 swung = new Vector3(0, 0, 90);
-    private bool isSwinging = false;
+    public bool isSwinging = false; //public so can Flip() script can use it
     public GameObject pivot;
     private bool isLeft;
     private float horizontal = 1;
     private float input = 1;
     private float damage = 10;
-    Quaternion wantedRotation;
+
+    Quaternion wantedRotation;  //swing animation
+    [SerializeField] private float swingSpeed = 400f;
+
     private string fireKey;
     private bool collided = false;
-    private float swingSpeed = 250f;
+   
+
 
 
     public PlayerStats playerStats;
@@ -78,10 +82,9 @@ public class Weapon : MonoBehaviour
         }
     }
 
-
     void Swing() {
-        Quaternion currentRotation = pivot.transform.rotation; //gets current rotation
 
+        Quaternion currentRotation = pivot.transform.rotation; //gets current rotation
         gameObject.GetComponent<SpriteRenderer>().enabled = true; //makes sword visable
         isSwinging = true;
 
@@ -89,18 +92,22 @@ public class Weapon : MonoBehaviour
 
         if(pivot.transform.rotation == wantedRotation){ //checks if the sword has finished rotating
             Reset();
+
             return;
         }
         if(isSwinging) {
-            pivot.transform.rotation = Quaternion.RotateTowards(currentRotation, wantedRotation, Time.deltaTime*swingSpeed); // swing
+      
+            pivot.transform.rotation = Quaternion.Lerp(currentRotation, wantedRotation, Time.deltaTime*swingSpeed); // swing lerp is based on interpolation point between 0 and 1
+          
         }
     }
 
     void setRotationDirection() { //sets direction to swing based on direction player is facing
         if(horizontal == 1){
-            wantedRotation = Quaternion.Euler(0,0,-90);
+            wantedRotation = Quaternion.Euler(0,0,-100);
+
         } else {
-            wantedRotation = Quaternion.Euler(0,0,90);
+            wantedRotation = Quaternion.Euler(0,0,100);
         }
     }
 
