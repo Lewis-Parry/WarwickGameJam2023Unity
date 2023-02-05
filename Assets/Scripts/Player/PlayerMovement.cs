@@ -254,10 +254,12 @@ public class PlayerMovement : MonoBehaviour
         float origGravity = rb.gravityScale;
         rb.gravityScale = 0f;
 
-        rb.AddForce(horizontal * 2f* dashingPower * Vector2.right);
+        //rb.AddForce(horizontal * 2f* dashingPower * Vector2.right);
+        rb.velocity = new Vector2(horizontal * 0.5f * dashingPower, rb.velocity.y);
         if (horizontal != 0)
-        { rb.AddForce(vertical * 0.8f * dashingPower * Vector2.up); }
-        yield return new WaitForSeconds(dashingTime);
+        // rb.AddForce(vertical * 0.8f * dashingPower * Vector2.up);
+        { rb.velocity = new Vector2(rb.velocity.x, vertical * 0.3f * dashingPower); }
+            yield return new WaitForSeconds(dashingTime);
         isDashing = false;
         rb.gravityScale = origGravity;
         yield return new WaitForSeconds(0.4f);
