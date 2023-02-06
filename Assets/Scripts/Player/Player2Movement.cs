@@ -69,7 +69,7 @@ public class Player2Movement : MonoBehaviour
         horizontal = Input.GetAxisRaw("Horizontal2"); //returns -1, 0 or 1 depending on direction moving (button dependent)
         vertical = Input.GetAxisRaw("Vertical2");
 
-        if (Input.GetButtonDown("Jump2") && playerStats.currentJumps > 0 || Input.GetButtonDown("Jump2") && IsGrounded())//when jump button pressed and on ground (GO TO EDIT -> PROJECT SETTINGS -> INPUT MANAGER TO SEE WHAT VALUES ARE WHAT)
+        if (Input.GetButtonDown("Jump2") && playerStats.currentJumps > 0 || Input.GetButtonDown("Jump2") && IsGrounded() || Input.GetButtonDown("Jump2") && playerStats.canFly)//when jump button pressed and on ground (GO TO EDIT -> PROJECT SETTINGS -> INPUT MANAGER TO SEE WHAT VALUES ARE WHAT)
         {
             rb.velocity = new Vector2(rb.velocity.x, playerStats.jumpingPower + playerStats.speed * 0.01f); //y velocity changes
             playerStats.currentJumps -= 1;
