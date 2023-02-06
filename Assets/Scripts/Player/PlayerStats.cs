@@ -13,5 +13,6 @@ public class PlayerStats : MonoBehaviour
     public float dashCooldown = 1f;
     public int currentJumps = 1;
     public int levelUpgrades = 0;
+    public bool canFly;
 
 }

@@ -693,8 +693,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   numberJumps: 0
-  dashUnlocked: 0
-  slamUnlocked: 0
+  dashUnlocked: 1
+  slamUnlocked: 1
+  slamDmgUnlocked: 0
+  dashDmgUnlocked: 0
+  playerName: 
+  numberLives: 0
+  maxHealth: 0
 --- !u!4 &760874670
 Transform:
   m_ObjectHideFlags: 0
@@ -1488,7 +1493,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   numberJumps: 0
   dashUnlocked: 1
-  slamUnlocked: 0
+  slamUnlocked: 1
+  slamDmgUnlocked: 0
+  dashDmgUnlocked: 0
+  playerName: 
+  numberLives: 0
+  maxHealth: 0
 --- !u!4 &1581852333
 Transform:
   m_ObjectHideFlags: 0

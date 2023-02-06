@@ -9,7 +9,7 @@ public class MaxHealthUp : Consumable
     protected override void upgrade() { //increases the number of jumps a player has
 
         if(playerStats.levelUpgrades == 0){
-            playerData.maxHealh += boostAmount; 
+            playerData.maxHealth += boostAmount; 
         }
     }
 
