@@ -11,6 +11,7 @@ public class PlayerMovement : MonoBehaviour
     private float vertical; //vertical input
 
     [SerializeField] private PlayerStats playerStats;
+    [SerializeField] private Weapon weaponScript;
     private float speed = 20f; //affects horizontal movement
     private float fixTargetSpeed = 2f;
     [SerializeField] private float fixAccelRate = 6f; //rate of acceleration
@@ -95,9 +96,9 @@ public class PlayerMovement : MonoBehaviour
             StartCoroutine(Dash());
         }
 
-        Squeeze();
-        Flip();
-
+     
+            Squeeze();
+            Flip();
 
     }
     private void FixedUpdate() //used for physics calculations (same frequency as physics system)
