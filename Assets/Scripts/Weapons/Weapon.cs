@@ -24,7 +24,7 @@ public class Weapon : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-      gameObject.GetComponent<SpriteRenderer>().enabled = false; //makes sword invisible
+      //gameObject.GetComponent<SpriteRenderer>().enabled = false; //makes sword invisible
       getPlayerFireKey(); 
     }
 
@@ -92,7 +92,7 @@ public class Weapon : MonoBehaviour
         }
         if(isSwinging) {
       
-            pivot.transform.rotation = Quaternion.RotateTowards(currentRotation, wantedRotation, Time.deltaTime*weaponStats.fireRate);
+            pivot.transform.rotation = Quaternion.Lerp(currentRotation, wantedRotation, Time.deltaTime*weaponStats.fireRate);
           
         }
     }

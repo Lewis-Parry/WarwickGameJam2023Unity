@@ -10,7 +10,7 @@ public abstract class Consumable : MonoBehaviour
     protected PlayerStats playerStats;
     protected WeaponStats weaponStats;
     protected PlayerData playerData;
-    protected float duration;
+    public float duration;
     Scene scene;
     
     
@@ -36,9 +36,10 @@ public abstract class Consumable : MonoBehaviour
                 gameObject.GetComponent<SpriteRenderer>().enabled = false;
                 gameObject.GetComponent<Collider2D>().enabled = false;
                 StartCoroutine(effect());
-                Destroy(gameObject); //destroys the powerup
+                //destroys the powerup
             } else {
                 upgrade();
+                Destroy(gameObject); 
             }
         }
     }

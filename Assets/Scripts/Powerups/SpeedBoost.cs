@@ -10,7 +10,9 @@ public class SpeedBoost : Consumable
     protected override IEnumerator effect() { //boosts player to boost speed
         playerStats.speed += boostSpeed; //changes the players speed stat to boost spped
         yield return new WaitForSeconds(duration);
+        
         playerStats.speed -= boostSpeed;
+        Destroy(gameObject); 
         
     }
 

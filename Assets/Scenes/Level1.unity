@@ -8483,6 +8483,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7093807095338812237, guid: a41e6498f03a3c7418424d435e93db76, type: 3}
+      propertyPath: duration
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 7093807095338812238, guid: a41e6498f03a3c7418424d435e93db76, type: 3}
       propertyPath: m_Name
       value: SpeedBoost

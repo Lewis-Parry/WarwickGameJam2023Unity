@@ -12,6 +12,7 @@ public class FireRateUp : Consumable
         weaponStats.fireRate = weaponStats.fireRate*speedBoost; //changes the players speed stat to boost spped
         yield return new WaitForSeconds(duration);
         weaponStats.fireRate = weaponStats.fireRate/speedBoost;
+        Destroy(gameObject); 
     }
 
     protected override void upgrade(){
