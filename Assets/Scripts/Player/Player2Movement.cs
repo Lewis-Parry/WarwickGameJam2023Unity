@@ -12,6 +12,7 @@ public class Player2Movement : MonoBehaviour
 
     [SerializeField] private PlayerStats playerStats;
     private PlayerData playerData;
+    [SerializeField] private Weapon weaponScript;
     private float speed = 20f; //affects horizontal movement
     private float fixTargetSpeed = 2f;
     [SerializeField] private float fixAccelRate = 6f; //rate of acceleration
@@ -28,7 +29,7 @@ public class Player2Movement : MonoBehaviour
     //DASHING GLOBAL VARIABLES
     private bool canDash = true;
     private bool isDashing;
-    [SerializeField] private float dashingPower = 100f;
+    [SerializeField] private float dashingPower = 150f;
     [SerializeField] private float dashingTime = 0.2f;
 
 
@@ -38,10 +39,11 @@ public class Player2Movement : MonoBehaviour
     [SerializeField] private AudioSource downSoundEffect;
 
     [SerializeField] private TrailRenderer tr;
-    [SerializeField] private ParticleSystem ps;
+    [SerializeField] private ParticleSystem pSyst;
+
 
     public Transform Player; //referencing Player Inspector values
-                             // Start is called before the first frame update
+    // Start is called before the first frame update
 
     void Start()
     {
@@ -53,21 +55,21 @@ public class Player2Movement : MonoBehaviour
     {
 
         if (isDashing) //prevents additional movement options
-        {return;}
+        { return; }
 
-         if (IsGrounded()) //doubleJumps
+        if (IsGrounded()) //doubleJumps
         {
             playerStats.currentJumps = playerData.numberJumps;
         }
 
-
         fixTargetSpeed = playerStats.speed;
-        float jumpingPower = playerStats.jumpingPower;
 
         rotateBack();
 
         horizontal = Input.GetAxisRaw("Horizontal2"); //returns -1, 0 or 1 depending on direction moving (button dependent)
         vertical = Input.GetAxisRaw("Vertical2");
+
+
 
         if (Input.GetButtonDown("Jump2") && playerStats.currentJumps > 0 || Input.GetButtonDown("Jump2") && IsGrounded() || Input.GetButtonDown("Jump2") && playerStats.canFly)//when jump button pressed and on ground (GO TO EDIT -> PROJECT SETTINGS -> INPUT MANAGER TO SEE WHAT VALUES ARE WHAT)
         {
@@ -80,10 +82,10 @@ public class Player2Movement : MonoBehaviour
             rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y * 0.5f + playerStats.speed * 0.01f);
         }
 
-
-        if (vertical==-1 && playerData.slamUnlocked && !IsGrounded())
+        if (vertical == -1 && playerData.slamUnlocked && !IsGrounded())
         {
-            rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y +  fallingStrength);
+
+            rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y + fallingStrength);
             downSoundEffect.Play();
         }
 
@@ -95,9 +97,9 @@ public class Player2Movement : MonoBehaviour
             StartCoroutine(Dash());
         }
 
+
         Squeeze();
         Flip();
-
 
     }
     private void FixedUpdate() //used for physics calculations (same frequency as physics system)
@@ -121,7 +123,7 @@ public class Player2Movement : MonoBehaviour
         }
 
         //DAMPENING OF ACCELERATION WHEN AIRBORNE
-        if (!IsGrounded()) 
+        if (!IsGrounded())
         {
             accelRate = accelRate * airborneDampening; //if the character is airbone, decrease acceleration
         }
@@ -133,7 +135,7 @@ public class Player2Movement : MonoBehaviour
 
         float speedDif = (targetSpeed * horizontal - rb.velocity.x); //speedDif increases as rb.velocity.x decreases
         float movement = speedDif * accelRate; //the slower the current velocity, the greater the movement
-           
+
         //rb.velocity = new Vector2(horizontal * speed, rb.velocity.y);
         rb.AddForce(movement * Vector2.right);
 
@@ -159,12 +161,11 @@ public class Player2Movement : MonoBehaviour
 
     }
 
+
     private bool IsGrounded() //for ground detection
     {
         return Physics2D.OverlapCircle(groundCheck.position, 0.2f, groundLayer);//creates an invisible circle at players feet, if this circle collides with groundLayer then the player can then jump 
     }
-
-
 
 
     float Rotation;
@@ -198,9 +199,11 @@ public class Player2Movement : MonoBehaviour
 
 
 
-
+    // public GameObject Blade1; //referencing the Blade Object's weapon script
+    // private Weapon weaponScript;
     private void Flip() //flip and squeeze sprite model
     {
+        //weaponScript = Blade1.GetComponent<Weapon>();
         if (isFacingRight && horizontal < 0f || !isFacingRight && horizontal > 0f)
         {
             isFacingRight = !isFacingRight;
@@ -211,7 +214,7 @@ public class Player2Movement : MonoBehaviour
 
     }
 
-  
+
     private void Squeeze()
     {
         float squeezeSoften = 0.7f; //softening constant to affect HOW MUCH the player squeezes
@@ -222,19 +225,20 @@ public class Player2Movement : MonoBehaviour
         if (horizontal != 0) //only changes when moving
         {
             //0.4f is dependent on the player's x scale value, if you change that, change this accordingly
-            localScale.x = (horizontal * charScale) / ((speed + Mathf.Abs(rb.velocity.x)*squeezeSoften) / speed);
+            localScale.x = (horizontal * charScale) / ((speed + Mathf.Abs(rb.velocity.x) * squeezeSoften) / speed);
             //scale.x = 1 - 1 / (SPEED - Math.abs(velocity.x)*softeningConstant) / SPEED;
         }
         else
         {
             if (isFacingRight)
-            {localScale.x = charScale;}
+            { localScale.x = charScale; }
             else
-            {localScale.x = -charScale;}
+            { localScale.x = -charScale; }
         }
 
         localScale.y = charScale / (1 + 0.05f * rb.velocity.y);
-        if (Mathf.Abs(localScale.y) <= charScale+leeWay && Mathf.Abs(localScale.x) <= charScale+leeWay) { //can only can be as wide as the initial width and height
+        if (Mathf.Abs(localScale.y) <= charScale + leeWay && Mathf.Abs(localScale.x) <= charScale + leeWay)
+        { //can only can be as wide as the initial width and height
             transform.localScale = localScale;
         }
 
@@ -243,23 +247,38 @@ public class Player2Movement : MonoBehaviour
     private IEnumerator Dash() //interface to control coroutine execution over a period of time, custom iterations
     {
 
+        tr = Player.GetComponent<TrailRenderer>(); //change trail effect
+        Color origStartColor = tr.startColor;
+        Color origEndColor = tr.endColor;
+        tr.emitting = true;
+        tr.startColor = new Color(255, 0, 0);
+        tr.endColor = new Color(200, 80, 80, 0);
+
         canDash = false;
         isDashing = true;
-        tr.startColor = Color.red;
-        tr.endColor = Color.blue;
         float origGravity = rb.gravityScale;
         rb.gravityScale = 0f;
 
-        rb.AddForce(horizontal * dashingPower * Vector2.right);
-        if (horizontal != 0)
-        { rb.AddForce(vertical * 1f * dashingPower * Vector2.up); }
+        //rb.AddForce(horizontal * 2f* dashingPower * Vector2.right);
+        rb.velocity = new Vector2(horizontal * 0.5f * dashingPower, rb.velocity.y);
+        if (vertical != 1)
+        // rb.AddForce(vertical * 0.8f * dashingPower * Vector2.up);
+        { rb.velocity = new Vector2(rb.velocity.x, vertical * 0.3f * dashingPower); }
         yield return new WaitForSeconds(dashingTime);
-        //tr.startColor = Color.white;
-        rb.gravityScale = origGravity;
         isDashing = false;
+        rb.gravityScale = origGravity;
+        yield return new WaitForSeconds(0.4f);
+        tr.startColor = origStartColor;//revert back color of trail
+        tr.endColor = origEndColor;
+        tr.emitting = false;
+        rb.gravityScale = origGravity;
         yield return new WaitForSeconds(playerStats.dashCooldown);
+        tr.startColor = origStartColor;//revert back
+        tr.endColor = origEndColor;
+        rb.gravityScale = origGravity;
         canDash = true;
     }
-
 }
+
+
 
