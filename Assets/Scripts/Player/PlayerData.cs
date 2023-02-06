@@ -8,6 +8,10 @@ public class PlayerData : MonoBehaviour
     public int numberJumps;
     public bool dashUnlocked;
     public bool slamUnlocked;
+    public bool slamDmgUnlocked;
+    public bool dashDmgUnlocked;
+    public string playerName;
+    public int numberLives;
 
     // Start is called before the first frame update
     void Start()

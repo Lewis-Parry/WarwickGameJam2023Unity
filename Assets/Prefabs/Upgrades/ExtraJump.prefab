@@ -11,9 +11,9 @@ GameObject:
   - component: {fileID: 7093807095338812236}
   - component: {fileID: 7093807095338812239}
   - component: {fileID: 7093807095338812242}
-  - component: {fileID: 7097093468287629389}
+  - component: {fileID: 8217909707356162241}
   m_Layer: 0
-  m_Name: ExtraLife
+  m_Name: ExtraJump
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -76,7 +76,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
-  m_Color: {r: 0, g: 0.2830189, b: 0.0069887913, a: 1}
+  m_Color: {r: 1, g: 0, b: 0, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -102,7 +102,7 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.5
---- !u!114 &7097093468287629389
+--- !u!114 &8217909707356162241
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -111,7 +111,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 7093807095338812238}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fd7fc15e100bc33409ed90a54e128659, type: 3}
+  m_Script: {fileID: 11500000, guid: ddc030e7b2105f845bc15a3044b1c25d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  powerupCollider: {fileID: 7093807095338812242}
+  consumableCollider: {fileID: 7093807095338812242}

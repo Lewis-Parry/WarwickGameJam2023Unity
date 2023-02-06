@@ -6,30 +6,15 @@ public class Weapon : MonoBehaviour
 {
     
     public bool isSwinging = false; //public so can Flip() script can use it
-    public GameObject pivot;
     private bool isLeft;
     private float horizontal = 1;
     private float input = 1;
     private float damage = 10;
 
     Quaternion wantedRotation;  //swing animation
-    [SerializeField] private float swingSpeed = 400f;
 
     private string fireKey;
     private bool collided = false;
-   
-
-
-
-    public PlayerStats playerStats;
-    
-
-    private string fireKey;
-
-    private bool collided = false; // if the sword has collding with the player during the current swing
-    private bool isSwinging = false; 
-
-    private float damage = 10;
 
     public WeaponStats weaponStats;
     public PlayerStats playerStats; 
@@ -107,7 +92,7 @@ public class Weapon : MonoBehaviour
         }
         if(isSwinging) {
       
-            pivot.transform.rotation = Quaternion.Lerp(currentRotation, wantedRotation, Time.deltaTime*swingSpeed); // swing lerp is based on interpolation point between 0 and 1
+            pivot.transform.rotation = Quaternion.RotateTowards(currentRotation, wantedRotation, Time.deltaTime*weaponStats.fireRate);
           
         }
     }

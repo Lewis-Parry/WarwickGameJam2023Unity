@@ -11,7 +11,7 @@ public class PlayerStats : MonoBehaviour
     public int numberLives;
     public float jumpingPower = 15f;
     public float dashCooldown = 1f;
-    public int numberJumps = 1;
     public int currentJumps = 1;
+    public int levelUpgrades = 0;
 
 }

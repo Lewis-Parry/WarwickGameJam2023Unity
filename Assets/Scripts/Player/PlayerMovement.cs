@@ -11,6 +11,7 @@ public class PlayerMovement : MonoBehaviour
     private float vertical; //vertical input
 
     [SerializeField] private PlayerStats playerStats;
+    private PlayerData playerData;
     [SerializeField] private Weapon weaponScript;
     private float speed = 20f; //affects horizontal movement
     private float fixTargetSpeed = 2f;
@@ -46,7 +47,7 @@ public class PlayerMovement : MonoBehaviour
 
     void Start()
     {
-
+        playerData = GameObject.Find("Player1Data").GetComponent<PlayerData>();
     }
 
     // Update is called once per frame
@@ -58,7 +59,7 @@ public class PlayerMovement : MonoBehaviour
 
         if (IsGrounded()) //doubleJumps
         {
-            playerStats.currentJumps = playerStats.numberJumps;
+            playerStats.currentJumps = playerData.numberJumps;
         }
 
         fixTargetSpeed = playerStats.speed;
@@ -70,7 +71,7 @@ public class PlayerMovement : MonoBehaviour
 
 
 
-        if (Input.GetButtonDown("Jump") && playerStats.currentJumps > 0)//when jump button pressed and on ground (GO TO EDIT -> PROJECT SETTINGS -> INPUT MANAGER TO SEE WHAT VALUES ARE WHAT)
+        if (Input.GetButtonDown("Jump") && playerStats.currentJumps > 0 || Input.GetButtonDown("Jump") && IsGrounded())//when jump button pressed and on ground (GO TO EDIT -> PROJECT SETTINGS -> INPUT MANAGER TO SEE WHAT VALUES ARE WHAT)
         {
             rb.velocity = new Vector2(rb.velocity.x, playerStats.jumpingPower + playerStats.speed * 0.01f); //y velocity changes
             playerStats.currentJumps -= 1;
@@ -81,7 +82,7 @@ public class PlayerMovement : MonoBehaviour
             rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y * 0.5f + playerStats.speed * 0.01f);
         }
 
-        if (vertical == -1)
+        if (vertical == -1 && playerData.slamUnlocked &&  !IsGrounded())
         {
 
             rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y + fallingStrength);
@@ -91,7 +92,7 @@ public class PlayerMovement : MonoBehaviour
 
 
         //DASHING
-        if (Input.GetButtonDown("Dash") && canDash)
+        if (Input.GetButtonDown("Dash") && canDash && playerData.dashUnlocked)
         {
             StartCoroutine(Dash());
         }
