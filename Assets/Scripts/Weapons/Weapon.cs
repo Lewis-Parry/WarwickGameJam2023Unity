@@ -5,8 +5,6 @@ using UnityEngine;
 public class Weapon : MonoBehaviour
 {
     
-   // private Vector3 rest = new Vector3(0, 0, 0);
-    //private Vector3 swung = new Vector3(0, 0, 90);
     public bool isSwinging = false; //public so can Flip() script can use it
     public GameObject pivot;
     private bool isLeft;
@@ -25,6 +23,18 @@ public class Weapon : MonoBehaviour
 
     public PlayerStats playerStats;
     
+
+    private string fireKey;
+
+    private bool collided = false; // if the sword has collding with the player during the current swing
+    private bool isSwinging = false; 
+
+    private float damage = 10;
+
+    public WeaponStats weaponStats;
+    public PlayerStats playerStats; 
+    
+    public GameObject pivot; // pivot to rotate around
 
     // Start is called before the first frame update
     void Start()

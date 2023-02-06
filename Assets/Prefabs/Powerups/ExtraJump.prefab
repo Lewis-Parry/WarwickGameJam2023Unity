@@ -11,9 +11,9 @@ GameObject:
   - component: {fileID: 7093807095338812236}
   - component: {fileID: 7093807095338812239}
   - component: {fileID: 7093807095338812242}
-  - component: {fileID: 7093807095338812237}
+  - component: {fileID: -6182340432063972985}
   m_Layer: 0
-  m_Name: SpeedBoost
+  m_Name: ExtraJump
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -76,7 +76,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0, g: 0.22864747, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -102,7 +102,7 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.5
---- !u!114 &7093807095338812237
+--- !u!114 &-6182340432063972985
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -111,8 +111,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 7093807095338812238}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 39e278813d6ab3c4598f88afa8a19b9c, type: 3}
+  m_Script: {fileID: 11500000, guid: ddc030e7b2105f845bc15a3044b1c25d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   powerupCollider: {fileID: 7093807095338812242}
-  boostSpeed: 14
