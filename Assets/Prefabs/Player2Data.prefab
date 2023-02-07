@@ -9,10 +9,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5775765926472783450}
-  - component: {fileID: 5775765926472783449}
+  - component: {fileID: 8629209808205608733}
   m_Layer: 0
   m_Name: Player2Data
-  m_TagString: Untagged
+  m_TagString: Data
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -32,7 +32,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &5775765926472783449
+--- !u!114 &8629209808205608733
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -47,3 +47,8 @@ MonoBehaviour:
   numberJumps: 0
   dashUnlocked: 0
   slamUnlocked: 0
+  slamDmgUnlocked: 0
+  dashDmgUnlocked: 0
+  playerName: 
+  numberLives: 0
+  maxHealth: 0

@@ -14,7 +14,8 @@ public class PlayerData : MonoBehaviour
     public string playerName;
     public int numberLives;
     public float maxHealth;
-    private int numScenes;
+    private int numScenes = 0;
+    private int num = 0;
 
     // Start is called before the first frame update
     void Start()
@@ -27,19 +28,26 @@ public class PlayerData : MonoBehaviour
     void Update()
     {
         SceneManager.sceneLoaded += OnSceneLoaded;
-        
     }
 
     void Reset(){
+        
+         numberJumps = 0;
+         dashUnlocked = false;
+         slamUnlocked= false;
+         numberLives = 0;
+         maxHealth = 100;
     }
 
     void OnSceneLoaded(Scene scene, LoadSceneMode mode){
-        if(scene.name == "MainMenu" & numScenes != 0) {
-            Debug.Log("destroying");
-            Destroy(gameObject);
-        } else {
-            Debug.Log(numScenes + scene.name);
-            numScenes = 1;
-        }
+        
+        if(scene.name == "MainMenu") {
+            Reset();
+        } 
+    }
+
+    private void OnDestroy(){
+    // Always clean up your listeners when not needed anymore
+    SceneManager.sceneLoaded -= OnSceneLoaded;
     }
 }

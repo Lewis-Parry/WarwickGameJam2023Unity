@@ -47,7 +47,7 @@ public class PlayerMovement : MonoBehaviour
 
     void Start()
     {
-        playerData = GameObject.Find("Player1Data").GetComponent<PlayerData>();
+        playerData = GameObject.Find("Player1Data(Clone)").GetComponent<PlayerData>();
     }
 
     // Update is called once per frame
