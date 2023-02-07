@@ -123,7 +123,18 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!1001 &262287209
+--- !u!114 &353548441 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1036516235791541178, guid: 3a53aa9cabf12e34ea7328691f12e7bd, type: 3}
+  m_PrefabInstance: {fileID: 1067689104}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3b1dc9ba13b7ec7478cb260e1e3379a9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!1001 &433620007
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -176,21 +187,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8268085447884898420, guid: e412016195713e44c831d4373841d37a, type: 3}
       propertyPath: m_Name
-      value: MainCamwPP
+      value: Main Camera
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e412016195713e44c831d4373841d37a, type: 3}
---- !u!114 &353548441 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 1036516235791541178, guid: 3a53aa9cabf12e34ea7328691f12e7bd, type: 3}
-  m_PrefabInstance: {fileID: 1067689104}
+--- !u!20 &433620008 stripped
+Camera:
+  m_CorrespondingSourceObject: {fileID: 8268085447884898422, guid: e412016195713e44c831d4373841d37a, type: 3}
+  m_PrefabInstance: {fileID: 433620007}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3b1dc9ba13b7ec7478cb260e1e3379a9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &1067689104
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -225,7 +230,7 @@ PrefabInstance:
     - target: {fileID: 1036516235966448940, guid: 3a53aa9cabf12e34ea7328691f12e7bd, type: 3}
       propertyPath: m_Camera
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 433620008}
     - target: {fileID: 1036516235966448943, guid: 3a53aa9cabf12e34ea7328691f12e7bd, type: 3}
       propertyPath: m_Pivot.x
       value: 0
