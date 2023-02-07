@@ -10,9 +10,9 @@ public class PowerUpSpawner : MonoBehaviour
     public GameObject speedBoost;
     public GameObject flying;
     public GameObject healthUp;
-    public int spawnDuration;
     List<GameObject> prefabList = new List<GameObject>();
     private bool isSpawning = false;
+    private int spawnDuration = 5;
 
     void Start()
     {

@@ -9,8 +9,8 @@ public class HealthUp: Consumable
 
     protected override IEnumerator effect() { //boosts player to boost speed
         playerStats.health += boost;
-        Destroy(gameObject); 
         yield return new WaitForSeconds(duration);
+        Destroy(gameObject); 
         
     }
 
