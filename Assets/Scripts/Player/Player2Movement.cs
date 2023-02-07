@@ -205,7 +205,7 @@ public class Player2Movement : MonoBehaviour
     private void Flip() //flip and squeeze sprite model
     {
         //weaponScript = Blade1.GetComponent<Weapon>();
-        if (isFacingRight && horizontal < 0f || !isFacingRight && horizontal > 0f)
+        if (isFacingRight && horizontal < 0f|| !isFacingRight && horizontal > 0f)
         {
             isFacingRight = !isFacingRight;
             Vector3 localScale = transform.localScale;

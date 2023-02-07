@@ -5,7 +5,6 @@ using UnityEngine;
 public class Weapon : MonoBehaviour
 {
     
-    public bool isSwinging = false; //public so can Flip() script can use it
     private bool isLeft;
     private float horizontal = 1;
     private float input = 1;
@@ -33,7 +32,7 @@ public class Weapon : MonoBehaviour
     {
         getHorizontalInput(); 
 
-        if (Input.GetButtonUp(fireKey) || isSwinging) //if fire key switched start swinging and continue swinging not at 90 degrees
+        if (Input.GetButtonUp(fireKey) || playerStats.isSwinging) //if fire key switched start swinging and continue swinging not at 90 degrees
         {
            Swing();
         }
@@ -44,7 +43,7 @@ public class Weapon : MonoBehaviour
     {
         if(collision.tag == "Player") { // check if collided with a player 
 
-            if(!isSwinging || collided) { // if the sword is not swinging or has already hit a player return
+            if(!playerStats.isSwinging || collided) { // if the sword is not swinging or has already hit a player return
                 return;
             }
 
@@ -81,16 +80,19 @@ public class Weapon : MonoBehaviour
 
         Quaternion currentRotation = pivot.transform.rotation; //gets current rotation
         gameObject.GetComponent<SpriteRenderer>().enabled = true; //makes sword visable
-        isSwinging = true;
 
-        setRotationDirection(); 
+        if(!playerStats.isSwinging){
+            setRotationDirection(); 
+        }
+ 
+        playerStats.isSwinging = true;
 
         if(pivot.transform.rotation == wantedRotation){ //checks if the sword has finished rotating
             Reset();
 
             return;
         }
-        if(isSwinging) {
+        if(playerStats.isSwinging) {
       
             pivot.transform.rotation = Quaternion.Lerp(currentRotation, wantedRotation, Time.deltaTime*weaponStats.fireRate);
           
@@ -107,7 +109,7 @@ public class Weapon : MonoBehaviour
     }
 
     void Reset() { // reset after finishing swinging 
-        isSwinging = false;
+        playerStats.isSwinging = false;
         collided = false;
         gameObject.GetComponent<SpriteRenderer>().enabled = false; // turn invisible
         pivot.transform.rotation = Quaternion.identity; // turn upright

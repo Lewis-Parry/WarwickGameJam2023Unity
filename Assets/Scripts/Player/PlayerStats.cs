@@ -14,5 +14,6 @@ public class PlayerStats : MonoBehaviour
     public int currentJumps = 1;
     public int levelUpgrades = 0;
     public bool canFly;
+    public bool isSwinging;
 
 }

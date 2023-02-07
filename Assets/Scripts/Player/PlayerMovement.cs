@@ -101,8 +101,12 @@ public class PlayerMovement : MonoBehaviour
         }
 
      
-            Squeeze();
-            Flip();
+            
+            if(!playerStats.isSwinging){
+                Flip();
+                Squeeze();
+            }
+  
 
     }
     private void FixedUpdate() //used for physics calculations (same frequency as physics system)
@@ -207,7 +211,7 @@ public class PlayerMovement : MonoBehaviour
     private void Flip() //flip and squeeze sprite model
     {
         //weaponScript = Blade1.GetComponent<Weapon>();
-        if (isFacingRight && horizontal < 0f || !isFacingRight && horizontal > 0f )
+        if (isFacingRight && horizontal < 0f || !isFacingRight && horizontal > 0f)
         {
          isFacingRight = !isFacingRight;
          Vector3 localScale = transform.localScale;
