@@ -34,20 +34,16 @@ public abstract class Consumable : MonoBehaviour
             } else if(playerStats.playerName == "player2") {
                 playerData = GameObject.Find("Player2Data(Clone)").GetComponent<PlayerData>();
             }
-            playerStats.levelUpgrades += 1;
+            
 
             if(scene.name != "BackRooms"){
                 gameObject.GetComponent<SpriteRenderer>().enabled = false;
                 gameObject.GetComponent<Collider2D>().enabled = false;
                 StartCoroutine(effect());
             } else {
-                Debug.Log("In backrooms" + playerStats.levelUpgrades);
-                if(playerStats.levelUpgrades == 1){
-                    Debug.Log("upgrading");
+                if(playerStats.levelUpgrades == 0){
+                    playerStats.levelUpgrades = 1;
                     upgrade();
-                    Debug.Log(GameObject.Find("Player1Data(Clone)").GetComponent<PlayerData>().numberJumps + "Player1");
-                    Debug.Log(GameObject.Find("Player2Data(Clone)").GetComponent<PlayerData>().numberJumps + "Player2");
-                    Debug.Log(playerData.numberJumps);
                 }
             }
         }

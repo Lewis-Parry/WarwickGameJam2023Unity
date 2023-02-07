@@ -14,6 +14,7 @@ public class PlayerData : MonoBehaviour
     public string playerName;
     public int numberLives;
     public float maxHealth;
+    public int currentLevel;
 
     // Start is called before the first frame update
     void Start()
@@ -42,7 +43,9 @@ public class PlayerData : MonoBehaviour
         if(scene.name == "MainMenu") {
             Debug.Log("Resetting");
             Reset();
-        } 
+        } else if(scene.name != "BackRooms"){
+            currentLevel = SceneManager.GetActiveScene().buildIndex;
+        }
     }
 
     private void OnDestroy(){
