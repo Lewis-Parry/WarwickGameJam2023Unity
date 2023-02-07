@@ -9,12 +9,11 @@ public class PlayerData : MonoBehaviour
     public int numberJumps;
     public bool dashUnlocked;
     public bool slamUnlocked;
-    public bool slamDmgUnlocked;
-    public bool dashDmgUnlocked;
     public string playerName;
     public int numberLives;
     public float maxHealth;
     public int currentLevel;
+    public int numberWins = 0;
 
     // Start is called before the first frame update
     void Start()
@@ -36,6 +35,7 @@ public class PlayerData : MonoBehaviour
          slamUnlocked= false;
          numberLives = 0;
          maxHealth = 100;
+         numberWins = 0;
     }
 
     void OnSceneLoaded(Scene scene, LoadSceneMode mode){

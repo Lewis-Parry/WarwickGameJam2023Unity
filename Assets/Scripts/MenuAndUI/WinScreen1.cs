@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class WinScreen : MonoBehaviour
+public class WinScreen1 : MonoBehaviour
 {
 
     private GameObject[] players;
@@ -51,7 +51,7 @@ public class WinScreen : MonoBehaviour
                         PlayerData playerData1 = GameObject.Find("Player1Data(Clone)").GetComponent<PlayerData>();
                         PlayerData playerData2 = GameObject.Find("Player2Data(Clone)").GetComponent<PlayerData>();
 
-                        if(playerData2.numberWins < playerData1.numberWins){
+                        if(playerData2.numberWins > playerData1.numberWins){
                             win();
                         } else {
                             return;
