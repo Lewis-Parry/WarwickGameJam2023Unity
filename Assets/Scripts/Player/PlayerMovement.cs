@@ -60,6 +60,7 @@ public class PlayerMovement : MonoBehaviour
         if (IsGrounded()) //doubleJumps
         {
             playerStats.currentJumps = playerData.numberJumps;
+            Debug.Log(playerData.numberJumps);
         }
 
         fixTargetSpeed = playerStats.speed;

@@ -14,4 +14,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Level2.unity
     guid: a02e5ecb6afc51e41b783e6f80e10e69
+  - enabled: 1
+    path: Assets/Scenes/BackRooms.unity
+    guid: 373cef18429fd694eaf29b3f5df998ee
   m_configObjects: {}

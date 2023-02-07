@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerHealth : MonoBehaviour
 {
@@ -19,7 +20,8 @@ public class PlayerHealth : MonoBehaviour
     {
         if(Input.GetKeyDown(KeyCode.Space))
         {
-            TakeDamage(10);
+            SceneManager.LoadScene("BackRooms");
+
         }
 
         if(playerStats.health <= 0) { //if health is 0 take away a life

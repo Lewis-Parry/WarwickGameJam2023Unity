@@ -114,6 +114,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7a73cea505010744a8ec843ae6d87350, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  consumableCollider: {fileID: 0}
+  consumableCollider: {fileID: 7093807095338812242}
   duration: 5
   cdr: 0.5

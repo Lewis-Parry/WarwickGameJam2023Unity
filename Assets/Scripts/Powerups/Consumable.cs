@@ -18,6 +18,10 @@ public abstract class Consumable : MonoBehaviour
         Scene scene = SceneManager.GetActiveScene();
     }
 
+    public void Update(){
+        scene = SceneManager.GetActiveScene();
+    }
+
     //on collision with a player delete the power up and cause the effect
     public void OnTriggerEnter2D(Collider2D collision) 
     {
@@ -26,9 +30,9 @@ public abstract class Consumable : MonoBehaviour
             weaponStats = collision.gameObject.GetComponentInChildren<WeaponStats>(false);
 
             if(playerStats.name == "player1"){
-                playerData = GameObject.Find("Player1Data").GetComponent<PlayerData>();
+                playerData = GameObject.Find("Player1Data(Clone)").GetComponent<PlayerData>();
             } else{
-                playerData = GameObject.Find("Player2Data").GetComponent<PlayerData>();
+                playerData = GameObject.Find("Player2Data(Clone)").GetComponent<PlayerData>();
             }
             playerStats.levelUpgrades += 1;
 
@@ -38,8 +42,12 @@ public abstract class Consumable : MonoBehaviour
                 StartCoroutine(effect());
                 //destroys the powerup
             } else {
-                upgrade();
-                Destroy(gameObject); 
+                Debug.Log("In backrooms" + playerStats.levelUpgrades);
+                if(playerStats.levelUpgrades == 1){
+                    Debug.Log("upgrading");
+                    upgrade();
+                    Debug.Log(GameObject.Find("Player1Data(Clone)").GetComponent<PlayerData>().numberJumps);
+                }
             }
         }
     }
