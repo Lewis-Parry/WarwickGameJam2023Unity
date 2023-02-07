@@ -132,5 +132,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   consumableCollider: {fileID: 3508311142736462013}
-  duration: 0
+  duration: 2
   boostAmount: 20

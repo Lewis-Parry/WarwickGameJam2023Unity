@@ -116,7 +116,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   consumableCollider: {fileID: 2913008961173333543}
-  duration: 1
+  duration: 2
 --- !u!58 &2913008961173333543
 CircleCollider2D:
   m_ObjectHideFlags: 0

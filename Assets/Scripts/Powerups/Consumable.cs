@@ -44,6 +44,7 @@ public abstract class Consumable : MonoBehaviour
                 if(playerStats.levelUpgrades == 0){
                     playerStats.levelUpgrades = 1;
                     upgrade();
+                    StartCoroutine(effect());
                 }
             }
         }
