@@ -100,7 +100,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   consumableCollider: {fileID: 367290703820371210}
   duration: 5
-  boost: 10
+  boost: 20
 --- !u!58 &367290703820371210
 CircleCollider2D:
   m_ObjectHideFlags: 0

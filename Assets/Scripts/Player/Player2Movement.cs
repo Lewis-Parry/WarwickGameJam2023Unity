@@ -87,7 +87,7 @@ public class Player2Movement : MonoBehaviour
         if (vertical == -1 && playerData.slamUnlocked && !IsGrounded())
         {
 
-            rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y + fallingStrength);
+            rb.AddForce(-fallingStrength * 100f * Vector2.down);
             FindObjectOfType<AudioManager>().Play("SlamBoomp");
         }
 
@@ -100,8 +100,11 @@ public class Player2Movement : MonoBehaviour
         }
 
 
-        Squeeze();
-        Flip();
+        if (!playerStats.isSwinging)
+        {
+            Flip();
+            Squeeze();
+        }
 
     }
     private void FixedUpdate() //used for physics calculations (same frequency as physics system)

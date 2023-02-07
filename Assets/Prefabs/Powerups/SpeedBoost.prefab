@@ -116,4 +116,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   consumableCollider: {fileID: 0}
   duration: 5
-  boostSpeed: 14
+  boostSpeed: 2
