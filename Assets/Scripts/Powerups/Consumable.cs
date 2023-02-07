@@ -32,7 +32,7 @@ public abstract class Consumable : MonoBehaviour
             }
             playerStats.levelUpgrades += 1;
 
-            if(scene.name != "LevelTransition"){
+            if(scene.name != "BackRooms"){
                 gameObject.GetComponent<SpriteRenderer>().enabled = false;
                 gameObject.GetComponent<Collider2D>().enabled = false;
                 StartCoroutine(effect());
