@@ -7,7 +7,7 @@ public class UnlockSlam : Consumable
 
     protected override void upgrade() { //increases the number of jumps a player has
 
-        if(playerStats.levelUpgrades == 0){
+        if(playerStats.levelUpgrades == 1){
             playerData.slamUnlocked = true; 
         }
     }

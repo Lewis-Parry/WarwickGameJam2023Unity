@@ -51,8 +51,9 @@ public class Player2Movement : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
-    {
+    void Update() {
+
+        playerData = GameObject.Find("Player2Data(Clone)").GetComponent<PlayerData>();
 
         if (isDashing) //prevents additional movement options
         { return; }

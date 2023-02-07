@@ -29,9 +29,9 @@ public abstract class Consumable : MonoBehaviour
             playerStats = collision.gameObject.GetComponent<PlayerStats>();
             weaponStats = collision.gameObject.GetComponentInChildren<WeaponStats>(false);
 
-            if(playerStats.name == "player1"){
+            if(playerStats.playerName == "player1"){
                 playerData = GameObject.Find("Player1Data(Clone)").GetComponent<PlayerData>();
-            } else{
+            } else if(playerStats.playerName == "player2") {
                 playerData = GameObject.Find("Player2Data(Clone)").GetComponent<PlayerData>();
             }
             playerStats.levelUpgrades += 1;
@@ -40,13 +40,14 @@ public abstract class Consumable : MonoBehaviour
                 gameObject.GetComponent<SpriteRenderer>().enabled = false;
                 gameObject.GetComponent<Collider2D>().enabled = false;
                 StartCoroutine(effect());
-                //destroys the powerup
             } else {
                 Debug.Log("In backrooms" + playerStats.levelUpgrades);
                 if(playerStats.levelUpgrades == 1){
                     Debug.Log("upgrading");
                     upgrade();
-                    Debug.Log(GameObject.Find("Player1Data(Clone)").GetComponent<PlayerData>().numberJumps);
+                    Debug.Log(GameObject.Find("Player1Data(Clone)").GetComponent<PlayerData>().numberJumps + "Player1");
+                    Debug.Log(GameObject.Find("Player2Data(Clone)").GetComponent<PlayerData>().numberJumps + "Player2");
+                    Debug.Log(playerData.numberJumps);
                 }
             }
         }

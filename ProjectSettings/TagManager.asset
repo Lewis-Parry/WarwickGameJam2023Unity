@@ -4,6 +4,8 @@
 TagManager:
   serializedVersion: 2
   tags:
+  - Data1
+  - Data2
   - Data
   layers:
   - Default

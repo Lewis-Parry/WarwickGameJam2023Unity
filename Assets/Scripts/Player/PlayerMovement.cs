@@ -51,8 +51,8 @@ public class PlayerMovement : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
-    {
+    void Update() {
+        playerData = GameObject.Find("Player1Data(Clone)").GetComponent<PlayerData>();
 
         if (isDashing) //prevents additional movement options
         { return; }
@@ -76,7 +76,7 @@ public class PlayerMovement : MonoBehaviour
         {
             rb.velocity = new Vector2(rb.velocity.x, playerStats.jumpingPower + playerStats.speed * 0.01f); //y velocity changes
             playerStats.currentJumps -= 1;
-            FindObjectOfType<AudioManager>().Play("Jump");
+            //FindObjectOfType<AudioManager>().Play("Jump");
         }
 
         if (Input.GetButtonUp("Jump") && rb.velocity.y > 0f)
@@ -97,7 +97,7 @@ public class PlayerMovement : MonoBehaviour
         //DASHING
         if (Input.GetButtonDown("Dash") && canDash && playerData.dashUnlocked)
         {
-            FindObjectOfType<AudioManager>().Play("dash");
+            //FindObjectOfType<AudioManager>().Play("dash");
             StartCoroutine(Dash());
         }
 

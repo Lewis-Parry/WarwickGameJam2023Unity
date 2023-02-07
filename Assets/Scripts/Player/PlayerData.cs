@@ -14,14 +14,12 @@ public class PlayerData : MonoBehaviour
     public string playerName;
     public int numberLives;
     public float maxHealth;
-    private int numScenes = 0;
-    private int num = 0;
 
     // Start is called before the first frame update
     void Start()
     {
         DontDestroyOnLoad (gameObject);
-    
+
     }
 
     // Update is called once per frame
@@ -42,6 +40,7 @@ public class PlayerData : MonoBehaviour
     void OnSceneLoaded(Scene scene, LoadSceneMode mode){
         
         if(scene.name == "MainMenu") {
+            Debug.Log("Resetting");
             Reset();
         } 
     }

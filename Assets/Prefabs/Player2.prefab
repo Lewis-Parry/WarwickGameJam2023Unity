@@ -266,6 +266,7 @@ GameObject:
   - component: {fileID: 6412761687208867802}
   - component: {fileID: 6412761687208867797}
   - component: {fileID: 6412761687208867796}
+  - component: {fileID: 7018741602365207674}
   m_Layer: 0
   m_Name: Player2
   m_TagString: Player
@@ -607,6 +608,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   charScale: 0.33
   playerStats: {fileID: 6412761687208867796}
+  weaponScript: {fileID: 0}
   fixAccelRate: 6
   airborneDampening: 0.8
   apexJumpModifier: 1.6
@@ -620,7 +622,7 @@ MonoBehaviour:
     m_Bits: 64
   downSoundEffect: {fileID: 6412761687208867803}
   tr: {fileID: 0}
-  ps: {fileID: 0}
+  pSyst: {fileID: 0}
   Player: {fileID: 6412761687208867804}
 --- !u!114 &6412761687208867797
 MonoBehaviour:
@@ -657,6 +659,20 @@ MonoBehaviour:
   dashCooldown: 1
   currentJumps: 1
   levelUpgrades: 0
+  canFly: 0
+--- !u!114 &7018741602365207674
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6412761687208867799}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: abdfacf6f15b78e4e8361da175bdb4b3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerData: {fileID: 0}
 --- !u!1 &6412761688226166261
 GameObject:
   m_ObjectHideFlags: 0
