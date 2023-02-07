@@ -31,7 +31,7 @@ public class WinScreen : MonoBehaviour
 
                 Scene scene = SceneManager.GetActiveScene();
 
-                if(scene.name != "Level2"){
+                if(scene.name != "Level5"){
                     SceneManager.LoadScene("BackRooms");
                 } else {
                     win();
