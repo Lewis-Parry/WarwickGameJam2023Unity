@@ -75,6 +75,7 @@ public class PlayerMovement : MonoBehaviour
         {
             rb.velocity = new Vector2(rb.velocity.x, playerStats.jumpingPower + playerStats.speed * 0.01f); //y velocity changes
             playerStats.currentJumps -= 1;
+            FindObjectOfType<AudioManager>().Play("Jump");
         }
 
         if (Input.GetButtonUp("Jump") && rb.velocity.y > 0f)
@@ -85,8 +86,9 @@ public class PlayerMovement : MonoBehaviour
         if (vertical == -1 && playerData.slamUnlocked &&  !IsGrounded())
         {
 
-            rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y + fallingStrength);
-            downSoundEffect.Play();
+            //rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y + fallingStrength);
+            rb.AddForce(-fallingStrength * 100f * Vector2.down);
+            FindObjectOfType<AudioManager>().Play("SlamBoomp");
         }
 
 
@@ -94,6 +96,7 @@ public class PlayerMovement : MonoBehaviour
         //DASHING
         if (Input.GetButtonDown("Dash") && canDash && playerData.dashUnlocked)
         {
+            FindObjectOfType<AudioManager>().Play("dash");
             StartCoroutine(Dash());
         }
 
