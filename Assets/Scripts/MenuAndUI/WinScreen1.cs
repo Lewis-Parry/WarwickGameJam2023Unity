@@ -31,7 +31,7 @@ public class WinScreen1 : MonoBehaviour
 
             
             if(playerStats.isAlive == false) { //checks a player is alive
-
+                players[i].GetComponent<SpriteRenderer>().enabled = false;
                 if(playerStats.playerName == "player1") {
                    PlayerData playerData = GameObject.Find("Player1Data(Clone)").GetComponent<PlayerData>(); 
                    playerData.numberWins -= 1;
@@ -52,6 +52,7 @@ public class WinScreen1 : MonoBehaviour
                         PlayerData playerData2 = GameObject.Find("Player2Data(Clone)").GetComponent<PlayerData>();
 
                         if(playerData2.numberWins > playerData1.numberWins){
+                            Time.timeScale = 0;
                             win();
                         } else {
                             return;
@@ -66,6 +67,7 @@ public class WinScreen1 : MonoBehaviour
     }
 
     public void Exit() { //quits to main menu
+        Time.timeScale = 1;
         SceneManager.LoadScene("MainMenu");
     }
 }
