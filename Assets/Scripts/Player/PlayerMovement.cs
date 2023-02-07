@@ -248,8 +248,8 @@ public class PlayerMovement : MonoBehaviour
     {
 
         tr = Player.GetComponent<TrailRenderer>(); //change trail effect
-        UnityEngine.Color origStartColor = tr.startColor;
-        UnityEngine.Color origEndColor = tr.endColor;
+        Color origStartColor = tr.startColor;
+        Color origEndColor = tr.endColor;
         tr.emitting = true;
         tr.startColor = new Color(255, 0, 0);
         tr.endColor = new Color(200, 80, 80, 0);
