@@ -65,7 +65,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2951416618226926573}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.662, y: 0.31, z: 0.22}
+  m_LocalPosition: {x: 1.5, y: 0.3, z: 0.2}
   m_LocalScale: {x: 0.33, y: 0.33, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -160,7 +160,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.011649251, y: 0.09568569}
+  m_Offset: {x: 0, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -171,8 +171,8 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1.2551982, y: 1.2007442}
-  m_EdgeRadius: 0.05
+  m_Size: {x: 1.6, y: 1.6}
+  m_EdgeRadius: 0
 --- !u!114 &2951416618226926566
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -192,7 +192,7 @@ MonoBehaviour:
   airborneDampening: 0.8
   apexJumpModifier: 1.6
   apexJumpThreshold: 7
-  dashingPower: 50
+  dashingPower: 100
   dashingTime: 0.01
   rb: {fileID: 2951416618226926564}
   groundCheck: {fileID: 2951416617905629538}
@@ -331,7 +331,7 @@ AudioSource:
   SpatializePostEffects: 0
   Priority: 128
   DopplerLevel: 1
-  MinDistance: 1
+  MinDistance: 0.29888654
   MaxDistance: 500
   Pan2D: 0
   rolloffMode: 0
