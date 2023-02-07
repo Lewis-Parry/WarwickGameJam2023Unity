@@ -5295,10 +5295,38 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5149965974174202302, guid: 6b53d8ca6fdd2b34fa1dbb2b53108677, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5149965975749346083, guid: 6b53d8ca6fdd2b34fa1dbb2b53108677, type: 3}
+      propertyPath: m_ConstrainProportionsScale
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5149965975749346104, guid: 6b53d8ca6fdd2b34fa1dbb2b53108677, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5149965975749346104, guid: 6b53d8ca6fdd2b34fa1dbb2b53108677, type: 3}
+      propertyPath: m_SortingOrder
+      value: 20
+      objectReference: {fileID: 0}
     - target: {fileID: 5149965975749346110, guid: 6b53d8ca6fdd2b34fa1dbb2b53108677, type: 3}
       propertyPath: playerStats
       value: 
       objectReference: {fileID: 2951416618226926570}
+    - target: {fileID: 5149965975749346111, guid: 6b53d8ca6fdd2b34fa1dbb2b53108677, type: 3}
+      propertyPath: m_Size.x
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 5149965975749346111, guid: 6b53d8ca6fdd2b34fa1dbb2b53108677, type: 3}
+      propertyPath: m_Size.y
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 5149965975749346111, guid: 6b53d8ca6fdd2b34fa1dbb2b53108677, type: 3}
+      propertyPath: m_EdgeRadius
+      value: 0.01
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6b53d8ca6fdd2b34fa1dbb2b53108677, type: 3}
 --- !u!4 &2951416617183189743 stripped
