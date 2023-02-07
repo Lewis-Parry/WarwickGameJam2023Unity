@@ -41,6 +41,7 @@ public class PowerUpSpawner : MonoBehaviour
             int prefabIndex = UnityEngine.Random.Range(0,5);
             GameObject powerup = Instantiate(prefabList[prefabIndex]);
             powerup.transform.parent = gameObject.transform;
+            powerup.transform.position = gameObject.transform.position;
             isSpawning = false;
         }
 
