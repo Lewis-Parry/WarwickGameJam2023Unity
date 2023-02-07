@@ -2916,6 +2916,18 @@ PrefabInstance:
       propertyPath: m_text
       value: PLAYER 1 WINS
       objectReference: {fileID: 0}
+    - target: {fileID: 1036516235145545174, guid: 3a53aa9cabf12e34ea7328691f12e7bd, type: 3}
+      propertyPath: m_fontColor.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1036516235145545174, guid: 3a53aa9cabf12e34ea7328691f12e7bd, type: 3}
+      propertyPath: m_fontColor.g
+      value: 0.510552
+      objectReference: {fileID: 0}
+    - target: {fileID: 1036516235145545174, guid: 3a53aa9cabf12e34ea7328691f12e7bd, type: 3}
+      propertyPath: m_fontColor.r
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1036516235184084759, guid: 3a53aa9cabf12e34ea7328691f12e7bd, type: 3}
       propertyPath: m_AnchoredPosition.x
       value: -337.74536
@@ -3479,7 +3491,7 @@ MonoBehaviour:
   m_fontColor32:
     serializedVersion: 2
     rgba: 4281479730
-  m_fontColor: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
+  m_fontColor: {r: 1, g: 0.48377472, b: 0, a: 1}
   m_enableVertexGradient: 1
   m_colorMode: 3
   m_fontColorGradient:
