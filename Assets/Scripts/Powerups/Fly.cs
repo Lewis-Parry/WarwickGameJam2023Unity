@@ -6,7 +6,7 @@ public class Fly : Consumable
 {
 
     protected override IEnumerator effect() { //boosts player to boost speed
-       playerStats.canFly = true;
+        playerStats.canFly = true;
         yield return new WaitForSeconds(duration);
         playerStats.canFly = false;
         Destroy(gameObject); 

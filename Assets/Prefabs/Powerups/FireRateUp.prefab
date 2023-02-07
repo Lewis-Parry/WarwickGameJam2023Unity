@@ -27,7 +27,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7093807095338812238}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2.46, y: -0.14, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -114,5 +114,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f763f0a35c5e2db449a117ce97744f07, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  powerupCollider: {fileID: 7093807095338812242}
-  boostSpeed: 0.5
+  consumableCollider: {fileID: 0}
+  duration: 5
+  speedBoost: 0.5
