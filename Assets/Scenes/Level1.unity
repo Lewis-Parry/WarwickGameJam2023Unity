@@ -5317,7 +5317,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 7093807095338812236, guid: d9da429215b29e743bda2778892a7cd7, type: 3}
       propertyPath: m_RootOrder
-      value: 8
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 7093807095338812236, guid: d9da429215b29e743bda2778892a7cd7, type: 3}
       propertyPath: m_LocalPosition.x
@@ -7350,7 +7350,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 8268085447884898417, guid: e412016195713e44c831d4373841d37a, type: 3}
       propertyPath: m_RootOrder
-      value: 10
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 8268085447884898417, guid: e412016195713e44c831d4373841d37a, type: 3}
       propertyPath: m_LocalPosition.x
@@ -7527,81 +7527,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3b1dc9ba13b7ec7478cb260e1e3379a9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!1 &826083997
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 826083999}
-  - component: {fileID: 826083998}
-  m_Layer: 0
-  m_Name: Audio Manager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &826083998
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 826083997}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4cb7cc8c6092284479dcab0ace451c4b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  sounds:
-  - name: SlamBoomp
-    clip: {fileID: 8300000, guid: 178fb2514b493d7409ee2a2d97ef062a, type: 3}
-    volume: 0.792
-    pitch: 0.37
-    source: {fileID: 0}
-  - name: Jump
-    clip: {fileID: 8300000, guid: 152242b4443c7f540ae2001db289d166, type: 3}
-    volume: 0.375
-    pitch: 0.46
-    source: {fileID: 0}
-  - name: Dash
-    clip: {fileID: 8300000, guid: 9b4b9c172c5158540a9ab748dc04cf22, type: 3}
-    volume: 1
-    pitch: 0
-    source: {fileID: 0}
-  - name: powerUp
-    clip: {fileID: 8300000, guid: 53746234e5283e54fa2149a9ab85dd41, type: 3}
-    volume: 1
-    pitch: 1
-    source: {fileID: 0}
-  - name: running
-    clip: {fileID: 8300000, guid: daf50642ae4eabf4cad21eb522ddd706, type: 3}
-    volume: 0.608
-    pitch: 1
-    source: {fileID: 0}
-  - name: dash
-    clip: {fileID: 8300000, guid: 9b4b9c172c5158540a9ab748dc04cf22, type: 3}
-    volume: 0.541
-    pitch: 0.46
-    source: {fileID: 0}
---- !u!4 &826083999
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 826083997}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 12
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &949360405
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -8441,7 +8366,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1031689549429369488, guid: ac9bfe75147fc524a8eae6f7b6c8548f, type: 3}
       propertyPath: m_RootOrder
-      value: 9
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 1031689549429369488, guid: ac9bfe75147fc524a8eae6f7b6c8548f, type: 3}
       propertyPath: m_LocalPosition.x
