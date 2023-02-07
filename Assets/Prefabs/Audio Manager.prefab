@@ -80,3 +80,8 @@ MonoBehaviour:
     volume: 0.708
     pitch: 1.09
     source: {fileID: 0}
+  - name: swingSword
+    clip: {fileID: 8300000, guid: 71be73edfd0c82c4f9efade1e22631fa, type: 3}
+    volume: 0.307
+    pitch: 0.51
+    source: {fileID: 0}
