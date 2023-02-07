@@ -18,11 +18,11 @@ public class PlayerHealth : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetKeyDown(KeyCode.Space))
-        {
-            SceneManager.LoadScene("Level5");
+        //if(Input.GetKeyDown(KeyCode.Space))
+        //{
+        //    SceneManager.LoadScene("Level5");
 
-        }
+        //}
 
         if(playerStats.health <= 0) { //if health is 0 take away a life
             playerStats.numberLives =- 1;

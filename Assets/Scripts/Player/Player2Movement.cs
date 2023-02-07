@@ -76,6 +76,7 @@ public class Player2Movement : MonoBehaviour
         {
             rb.velocity = new Vector2(rb.velocity.x, playerStats.jumpingPower + playerStats.speed * 0.01f); //y velocity changes
             playerStats.currentJumps -= 1;
+            FindObjectOfType<AudioManager>().Play("Jump");
         }
 
         if (Input.GetButtonUp("Jump2") && rb.velocity.y > 0f)
@@ -87,7 +88,7 @@ public class Player2Movement : MonoBehaviour
         {
 
             rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y + fallingStrength);
-            downSoundEffect.Play();
+            FindObjectOfType<AudioManager>().Play("SlamBoomp");
         }
 
 
@@ -247,7 +248,7 @@ public class Player2Movement : MonoBehaviour
 
     private IEnumerator Dash() //interface to control coroutine execution over a period of time, custom iterations
     {
-
+        FindObjectOfType<AudioManager>().Play("dash");
         tr = Player.GetComponent<TrailRenderer>(); //change trail effect
         Color origStartColor = tr.startColor;
         Color origEndColor = tr.endColor;
