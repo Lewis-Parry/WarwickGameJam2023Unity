@@ -39,6 +39,7 @@ public abstract class Consumable : MonoBehaviour
             if(scene.name != "BackRooms"){
                 gameObject.GetComponent<SpriteRenderer>().enabled = false;
                 gameObject.GetComponent<Collider2D>().enabled = false;
+                FindObjectOfType<AudioManager>().Play("powerUp");
                 StartCoroutine(effect());
             } else {
                 if(playerStats.levelUpgrades == 0){

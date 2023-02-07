@@ -35,6 +35,7 @@ public class PlayerHealth : MonoBehaviour
 
     public void TakeDamage(float damage)
     {
+        FindObjectOfType<AudioManager>().Play("takeDamage");
         playerStats.health -= damage;
         healthBar.SetHealth(playerStats.health);
     }
