@@ -75,7 +75,7 @@ public class PlayerMovement : MonoBehaviour
         {
             rb.velocity = new Vector2(rb.velocity.x, playerStats.jumpingPower + playerStats.speed * 0.01f); //y velocity changes
             playerStats.currentJumps -= 1;
-            //FindObjectOfType<AudioManager>().Play("Jump");
+            FindObjectOfType<AudioManager>().Play("Jump");
         }
 
         if (Input.GetButtonUp("Jump") && rb.velocity.y > 0f)
@@ -96,7 +96,7 @@ public class PlayerMovement : MonoBehaviour
         //DASHING
         if (Input.GetButtonDown("Dash") && canDash && playerData.dashUnlocked)
         {
-            //FindObjectOfType<AudioManager>().Play("dash");
+           
             StartCoroutine(Dash());
         }
 
@@ -253,7 +253,7 @@ public class PlayerMovement : MonoBehaviour
 
     private IEnumerator Dash() //interface to control coroutine execution over a period of time, custom iterations
     {
-
+        FindObjectOfType<AudioManager>().Play("dash");
         tr = Player.GetComponent<TrailRenderer>(); //change trail effect
         Color origStartColor = tr.startColor;
         Color origEndColor = tr.endColor;

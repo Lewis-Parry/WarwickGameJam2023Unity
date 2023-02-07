@@ -46,14 +46,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sounds:
   - name: SlamBoomp
-    clip: {fileID: 8300000, guid: 178fb2514b493d7409ee2a2d97ef062a, type: 3}
+    clip: {fileID: 8300000, guid: 71d20b2a99828a346921f69c10234d76, type: 3}
     volume: 0.792
     pitch: 0.37
     source: {fileID: 0}
   - name: Jump
-    clip: {fileID: 8300000, guid: 152242b4443c7f540ae2001db289d166, type: 3}
-    volume: 0.375
-    pitch: 0.46
+    clip: {fileID: 8300000, guid: 7dfe437a3ecf9e3428e9ccb8fa766191, type: 3}
+    volume: 0.425
+    pitch: 0.82
     source: {fileID: 0}
   - name: Dash
     clip: {fileID: 8300000, guid: 9b4b9c172c5158540a9ab748dc04cf22, type: 3}
@@ -61,8 +61,8 @@ MonoBehaviour:
     pitch: 0
     source: {fileID: 0}
   - name: powerUp
-    clip: {fileID: 8300000, guid: 53746234e5283e54fa2149a9ab85dd41, type: 3}
-    volume: 1
+    clip: {fileID: 8300000, guid: 48cf2acabc1590d468cfd208e8ba70df, type: 3}
+    volume: 0.833
     pitch: 1
     source: {fileID: 0}
   - name: running
@@ -71,7 +71,7 @@ MonoBehaviour:
     pitch: 1
     source: {fileID: 0}
   - name: dash
-    clip: {fileID: 8300000, guid: 9b4b9c172c5158540a9ab748dc04cf22, type: 3}
+    clip: {fileID: 8300000, guid: b4a3daa969b3d3e40b7f4c006cb3a67b, type: 3}
     volume: 0.541
     pitch: 0.46
     source: {fileID: 0}
