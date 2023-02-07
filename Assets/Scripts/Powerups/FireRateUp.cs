@@ -5,7 +5,7 @@ using UnityEngine;
 public class FireRateUp : Consumable
 {
 
-    public float speedBoost = 0.5f; 
+    public float speedBoost = 2f; 
     
 
     protected override IEnumerator effect() { //boosts player to boost speed
