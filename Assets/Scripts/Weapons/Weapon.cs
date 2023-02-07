@@ -34,7 +34,8 @@ public class Weapon : MonoBehaviour
 
         if (Input.GetButtonUp(fireKey) || playerStats.isSwinging) //if fire key switched start swinging and continue swinging not at 90 degrees
         {
-           Swing();
+            
+            Swing();
         }
     }
 
@@ -46,6 +47,7 @@ public class Weapon : MonoBehaviour
             if(!playerStats.isSwinging || collided) { // if the sword is not swinging or has already hit a player return
                 return;
             }
+
 
             collided = true; 
 
@@ -82,7 +84,8 @@ public class Weapon : MonoBehaviour
         gameObject.GetComponent<SpriteRenderer>().enabled = true; //makes sword visable
 
         if(!playerStats.isSwinging){
-            setRotationDirection(); 
+            setRotationDirection();
+            FindObjectOfType<AudioManager>().Play("swingSword");
         }
  
         playerStats.isSwinging = true;
