@@ -47,6 +47,7 @@ public class PlayerMovement : MonoBehaviour
 
     void Start()
     {
+        FindObjectOfType<AudioManager>().Play("battleMusic");
         playerData = GameObject.Find("Player1Data(Clone)").GetComponent<PlayerData>();
     }
 

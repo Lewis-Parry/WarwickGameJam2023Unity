@@ -1664,7 +1664,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2951416617906511982, guid: 7047f76eea095504c854e7df83b2961c, type: 3}
       propertyPath: fireRate
-      value: 25
+      value: 12.5
       objectReference: {fileID: 0}
     - target: {fileID: 2951416618226926562, guid: 7047f76eea095504c854e7df83b2961c, type: 3}
       propertyPath: m_RootOrder

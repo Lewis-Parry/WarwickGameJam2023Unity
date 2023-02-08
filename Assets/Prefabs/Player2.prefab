@@ -211,7 +211,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1541e70660039b64fac458e373daf7b7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isSwinging: 0
   weaponStats: {fileID: 2371159511169072045}
   playerStats: {fileID: 6412761687208867796}
   pivot: {fileID: 2531693479458031721}
@@ -248,7 +247,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 818c4960a1adeae46b590de88f2ce502, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fireRate: 25
+  fireRate: 12.5
 --- !u!1 &6412761687208867799
 GameObject:
   m_ObjectHideFlags: 0
@@ -408,7 +407,7 @@ MonoBehaviour:
   airborneDampening: 0.8
   apexJumpModifier: 1.6
   apexJumpThreshold: 7
-  dashingPower: 100
+  dashingPower: 50
   dashingTime: 0.01
   rb: {fileID: 6412761687208867806}
   groundCheck: {fileID: 6412761688226166266}
@@ -460,7 +459,7 @@ TrailRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 2
   m_Time: 0.3
   m_Parameters:
     serializedVersion: 3
@@ -659,6 +658,7 @@ MonoBehaviour:
   currentJumps: 1
   levelUpgrades: 0
   canFly: 0
+  isSwinging: 0
 --- !u!1 &6412761688226166261
 GameObject:
   m_ObjectHideFlags: 0

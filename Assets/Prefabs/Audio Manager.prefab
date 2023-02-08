@@ -85,3 +85,18 @@ MonoBehaviour:
     volume: 0.307
     pitch: 0.51
     source: {fileID: 0}
+  - name: swingSword
+    clip: {fileID: 8300000, guid: 71be73edfd0c82c4f9efade1e22631fa, type: 3}
+    volume: 0.307
+    pitch: 0.51
+    source: {fileID: 0}
+  - name: battleMusic
+    clip: {fileID: 8300000, guid: fc1b3db244696f545903d55557b9ec01, type: 3}
+    volume: 0.307
+    pitch: 0.9
+    source: {fileID: 0}
+  - name: backRoomsMusic
+    clip: {fileID: 8300000, guid: 11fe7b912ebc1714c9dad24814397452, type: 3}
+    volume: 0.608
+    pitch: 1.4
+    source: {fileID: 0}

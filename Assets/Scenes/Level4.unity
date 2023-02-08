@@ -8386,6 +8386,14 @@ PrefabInstance:
       propertyPath: m_RootOrder
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 6412761687208867804, guid: 0811f9a977463ed4d82ad6887ba45d8a, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 3.9
+      objectReference: {fileID: 0}
+    - target: {fileID: 6412761687208867804, guid: 0811f9a977463ed4d82ad6887ba45d8a, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.1
+      objectReference: {fileID: 0}
     - target: {fileID: 7290193793269267781, guid: 0811f9a977463ed4d82ad6887ba45d8a, type: 3}
       propertyPath: m_Name
       value: Player2
@@ -8447,6 +8455,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2951416618226926562, guid: 7047f76eea095504c854e7df83b2961c, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -4.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 2951416618226926562, guid: 7047f76eea095504c854e7df83b2961c, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.07
+      objectReference: {fileID: 0}
     - target: {fileID: 2951416618226926571, guid: 7047f76eea095504c854e7df83b2961c, type: 3}
       propertyPath: healthBar
       value: 

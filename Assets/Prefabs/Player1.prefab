@@ -192,7 +192,7 @@ MonoBehaviour:
   airborneDampening: 0.8
   apexJumpModifier: 1.6
   apexJumpThreshold: 7
-  dashingPower: 100
+  dashingPower: 50
   dashingTime: 0.01
   rb: {fileID: 2951416618226926564}
   groundCheck: {fileID: 2951416617905629538}
@@ -443,6 +443,7 @@ MonoBehaviour:
   currentJumps: 1
   levelUpgrades: 0
   canFly: 0
+  isSwinging: 0
 --- !u!198 &2951416618226926560
 ParticleSystem:
   m_ObjectHideFlags: 0
@@ -5310,6 +5311,10 @@ PrefabInstance:
     - target: {fileID: 5149965975749346104, guid: 6b53d8ca6fdd2b34fa1dbb2b53108677, type: 3}
       propertyPath: m_SortingOrder
       value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 5149965975749346108, guid: 6b53d8ca6fdd2b34fa1dbb2b53108677, type: 3}
+      propertyPath: fireRate
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 5149965975749346110, guid: 6b53d8ca6fdd2b34fa1dbb2b53108677, type: 3}
       propertyPath: playerStats

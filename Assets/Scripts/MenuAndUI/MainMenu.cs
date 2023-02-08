@@ -7,6 +7,8 @@ public class MainMenu : MonoBehaviour
 {
    
     public void Play() {
+        FindObjectOfType<AudioManager>().Play("SlamBoomp");
+        
         SceneManager.LoadScene(1);
     }
 

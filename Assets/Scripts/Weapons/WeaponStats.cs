@@ -4,5 +4,5 @@ using UnityEngine;
 
 public class WeaponStats : MonoBehaviour
 {
-    public float fireRate = 250f;
+    public float fireRate = 15f;
 }
